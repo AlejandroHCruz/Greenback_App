@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="co.ensalsaverde.apps.greenback"
+    android:versionCode="1"
+    android:versionName="1.0" >
+
+    <uses-permission android:name="android.permission.GET_ACCOUNTS" />
+    <uses-permission android:name="android.permission.INTERNET" />
+
+    <uses-sdk
+        android:minSdkVersion="8"
+        android:targetSdkVersion="18" />
+
+    <application
+        android:allowBackup="true"
+        android:icon="@drawable/ic_launcher"
+        android:label="@string/app_name"
+        android:theme="@style/AppTheme" >
+        <activity
+            android:name="co.ensalsaverde.apps.greenback.Login"
+            android:label="@string/app_name" >
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name="co.ensalsaverde.apps.greenback.Main"
+            android:label="@string/app_name" >                
+                <category android:name="android.intent.category.DEFAULT" />
+        </activity>
+        
+        <activity
+            android:name="co.ensalsaverde.apps.greenback.SendToDrive"
+            android:label="@string/app_name" >                
+                <category android:name="android.intent.category.DEFAULT" />
+        </activity>
+        <activity
+            android:name="co.ensalsaverde.apps.greenback.Sources"
+            android:label="@string/app_name" >
+                <category android:name="android.intent.category.INFO" />
+        </activity>
+    </application>
+
+</manifest>

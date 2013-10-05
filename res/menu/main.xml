@@ -1,0 +1,31 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android" >
+
+   <!--   <item
+        android:id="@+id/action_settings"
+        android:orderInCategory="100"
+        android:showAsAction="never"
+        android:title="About this Application"/>
+        -->
+    
+     <item
+        android:id="@+id/driveConnection"
+        android:icon="@drawable/driveconnecticon"
+        android:orderInCategory="0"
+        android:showAsAction="always"
+        android:title="Send to Google Drive"/>
+    
+    <item
+    	android:id="@+id/addIncome"
+        android:icon="@drawable/incomeicon"
+        android:orderInCategory="2"
+        android:showAsAction="always"
+        android:title="Add an Income"/>
+        
+    <item
+        android:id="@+id/addExpense"
+        android:icon="@drawable/outcomeicon"
+        android:orderInCategory="1"
+        android:showAsAction="always"
+        android:title="Add an expense"/>
+
+</menu>
