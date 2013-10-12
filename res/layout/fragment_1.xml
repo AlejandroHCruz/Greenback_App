@@ -23,7 +23,7 @@
        android:layout_alignLeft="@+id/fragment1TV1"
        android:layout_below="@+id/fragment1TV1"
        android:layout_marginTop="20dp"
-       android:text="Fun" />
+       android:text="Ola" />
    
    <TextView
        android:id="@+id/textView2"
