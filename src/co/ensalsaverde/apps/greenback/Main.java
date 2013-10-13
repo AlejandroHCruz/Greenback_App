@@ -15,6 +15,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.Spinner;
 import android.widget.Toast;
@@ -31,6 +32,7 @@ public class Main extends SherlockFragmentActivity {
 	private CharSequence mDrawerTitle;
 	private CharSequence mTitle;
 	private String[] mFragmentTitles;
+	
 	
 	//PARA SHARED PREFERENCES
 	//private final String SpinnerValue = "SpinnerValue";
@@ -167,6 +169,7 @@ public class Main extends SherlockFragmentActivity {
 			
 			//-----------------------ClickOn Expenses---------------------
 			
+			
 			LayoutInflater li = LayoutInflater.from(Main.this);
 			
 			promptsView = li.inflate(R.layout.popupaddexpenses, null);
@@ -245,7 +248,7 @@ public class Main extends SherlockFragmentActivity {
 			// "Please enter the data", false);
 			// before the return.... Spinner spinnerExpenses =
 			// (Spinner)findViewById(R.id.spinnerexpenses);
-
+			
 			LayoutInflater li2 = LayoutInflater.from(Main.this);
 
 			View promptsView2 = li2.inflate(R.layout.popupaddincome, null);
@@ -264,11 +267,12 @@ public class Main extends SherlockFragmentActivity {
 			alertDialogBuilder2.setCancelable(true);	
 			alertDialogBuilder2.setPositiveButton("Save",
 					new OnClickListener() {
-
+				EditText income = (EditText) findViewById(R.id.NumberExpensesTextView);
+				
 						@Override
 						public void onClick(DialogInterface dialog, int which) {
 							// TODO Auto-generated method stub
-							
+							//int intIncome = Integer.parseInt(income.getText().toString());
 							
 							Toast.makeText(Main.this, "Your income has been safely stored.", Toast.LENGTH_LONG).show();
 							
@@ -291,7 +295,7 @@ public class Main extends SherlockFragmentActivity {
 
 			// create alert dialog
 			final AlertDialog alertDialog2 = alertDialogBuilder2.create();
-
+			
 			// Reference UI elements from my_dialog_layout in similar fashion
 
 				//DECLARANDO BOTON QUE YA NO USO
