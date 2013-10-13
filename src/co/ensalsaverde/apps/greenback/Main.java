@@ -1,6 +1,8 @@
 package co.ensalsaverde.apps.greenback;
 
+import android.app.Activity;
 import android.app.AlertDialog;
+import android.app.Dialog;
 import android.content.DialogInterface;
 import android.content.DialogInterface.OnClickListener;
 import android.content.Intent;
@@ -23,6 +25,9 @@ import android.widget.Toast;
 import com.actionbarsherlock.app.SherlockFragmentActivity;
 import com.actionbarsherlock.view.Menu;
 import com.actionbarsherlock.view.MenuItem;
+
+
+
 
 public class Main extends SherlockFragmentActivity {
 	private DrawerLayout mDrawerLayout;
@@ -54,18 +59,21 @@ public class Main extends SherlockFragmentActivity {
 	// prefsEditor.putString(UniqueIncome, "f664.PNG");
 	// prefsEditor.commit();
 	
-	//Spinner Setupn
+	//Spinner Setup
 	LayoutInflater li = null;
 
 	View promptsView = null;
 	
 	Spinner SpinnerExpenses = null;
-
+	int intIncome = 0;
+	int intOutcome = 0;
+	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.main);
-				
+		
+		
 
 		// Session Manager
 		// session = new SessionManager(getApplicationContext());
@@ -192,9 +200,11 @@ public class Main extends SherlockFragmentActivity {
 						@Override
 						public void onClick(DialogInterface dialog, int which) {
 							// WHEN SAVE EXPENSES IS CLICKED
-							
+							final EditText outcome =(EditText) promptsView.findViewById(R.id.NumberExpensesTextView);
+							 intOutcome = Integer.parseInt(outcome.getText().toString());
+							 System.out.println(intOutcome);
 							String selectedItem = SpinnerExpenses.getSelectedItem().toString();
-							Toast.makeText(Main.this, "Your expense has been safely stored into " + selectedItem, Toast.LENGTH_LONG).show();
+							Toast.makeText(Main.this, "$"+intOutcome +" were retired from " + selectedItem, Toast.LENGTH_LONG).show();
 								
 
 						}
@@ -249,38 +259,34 @@ public class Main extends SherlockFragmentActivity {
 			// before the return.... Spinner spinnerExpenses =
 			// (Spinner)findViewById(R.id.spinnerexpenses);
 			
-			LayoutInflater li2 = LayoutInflater.from(Main.this);
-
-			View promptsView2 = li2.inflate(R.layout.popupaddincome, null);
-
-			AlertDialog.Builder alertDialogBuilder2 = new AlertDialog.Builder(
-					Main.this);
+			 LayoutInflater li2 = LayoutInflater.from(Main.this);
+			final View promptsView2 = li2.inflate(R.layout.popupaddincome, null);
+			AlertDialog.Builder alertDialogBuilder2 = new AlertDialog.Builder(Main.this);
 
 			alertDialogBuilder2.setView(promptsView2);
 
 			// Set dialog message
 
 			alertDialogBuilder2.setTitle("Add a new income");
-			alertDialogBuilder2
-					.setMessage("Enter the amount and enjoy your new money!");
+			alertDialogBuilder2.setMessage("Enter the amount and enjoy your new money!");
 			alertDialogBuilder2.setIcon(R.drawable.incomeicon);
 			alertDialogBuilder2.setCancelable(true);	
 			alertDialogBuilder2.setPositiveButton("Save",
 					new OnClickListener() {
-				EditText income = (EditText) findViewById(R.id.NumberExpensesTextView);
-				
 						@Override
 						public void onClick(DialogInterface dialog, int which) {
 							// TODO Auto-generated method stub
-							//int intIncome = Integer.parseInt(income.getText().toString());
 							
-							Toast.makeText(Main.this, "Your income has been safely stored.", Toast.LENGTH_LONG).show();
+							final EditText income =(EditText) promptsView2.findViewById(R.id.NumberExpensesTextView);
+							 intIncome = Integer.parseInt(income.getText().toString());
 							
-							//login_activity
-							//String name = spinner1.getSelectedItem().toString();
-							//main_Activity
-							//if (name.toString().equals("INT")){
+							System.out.println(intIncome);
+							
+							Toast.makeText(Main.this, "$"+intIncome +" had been safely stored to your savings.", Toast.LENGTH_LONG).show();
+							
 						}
+
+						
 					});
 			
 			alertDialogBuilder2.setNegativeButton("Cancel", 					
@@ -337,6 +343,8 @@ public class Main extends SherlockFragmentActivity {
 		}
 
 	}
+
+	
 
 	private class DrawerItemClickListener implements
 			ListView.OnItemClickListener {
@@ -414,5 +422,6 @@ public class Main extends SherlockFragmentActivity {
 		super.onConfigurationChanged(newConfig);
 		mDrawerToggle.onConfigurationChanged(newConfig);
 	}
-
+	
+	
 }
