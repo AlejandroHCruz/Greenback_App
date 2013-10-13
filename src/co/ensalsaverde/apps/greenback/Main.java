@@ -17,7 +17,6 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.Spinner;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import com.actionbarsherlock.app.SherlockFragmentActivity;
@@ -52,6 +51,13 @@ public class Main extends SherlockFragmentActivity {
 
 	// prefsEditor.putString(UniqueIncome, "f664.PNG");
 	// prefsEditor.commit();
+	
+	//Spinner Setupn
+	LayoutInflater li = null;
+
+	View promptsView = null;
+	
+	Spinner SpinnerExpenses = null;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -160,9 +166,12 @@ public class Main extends SherlockFragmentActivity {
 
 			
 			//-----------------------ClickOn Expenses---------------------
+			
 			LayoutInflater li = LayoutInflater.from(Main.this);
-
-			View promptsView = li.inflate(R.layout.popupaddexpenses, null);
+			
+			promptsView = li.inflate(R.layout.popupaddexpenses, null);
+			final Spinner SpinnerExpenses = (Spinner) promptsView
+					.findViewById(R.id.spinnerexpenses);
 
 			AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(
 					Main.this);
@@ -179,8 +188,11 @@ public class Main extends SherlockFragmentActivity {
 
 						@Override
 						public void onClick(DialogInterface dialog, int which) {
-							// TODO Auto-generated method stub
-							Toast.makeText(Main.this, "Your expense has been safely stored.", Toast.LENGTH_LONG).show();
+							// WHEN SAVE EXPENSES IS CLICKED
+							
+							String selectedItem = SpinnerExpenses.getSelectedItem().toString();
+							Toast.makeText(Main.this, "Your expense has been safely stored into " + selectedItem, Toast.LENGTH_LONG).show();
+								
 
 						}
 					});
@@ -200,8 +212,7 @@ public class Main extends SherlockFragmentActivity {
 			//create alert dialog
 			final AlertDialog alertDialog = alertDialogBuilder.create();
 
-			final Spinner SpinnerExpenses = (Spinner) promptsView
-					.findViewById(R.id.spinnerexpenses);
+			
 			
 			/*final Button SaveExpenses = (Button) promptsView
 					.findViewById(R.id.buttonSaveExpenses);
@@ -212,10 +223,10 @@ public class Main extends SherlockFragmentActivity {
 
 			//String value; para esto de abajo
 			// Pasar un objeto, recibirlo alla como constructor para poder
-			// acceder a él.
+			// acceder a Ã©l.
 			
-			SpinnerExpenses
-					.setOnItemSelectedListener(new OnExpensesSpinnerItemClicked());
+			//SpinnerExpenses
+				//	.setOnItemSelectedListener(new OnExpensesSpinnerItemClicked());
 
 			alertDialog.show();
 
@@ -257,7 +268,14 @@ public class Main extends SherlockFragmentActivity {
 						@Override
 						public void onClick(DialogInterface dialog, int which) {
 							// TODO Auto-generated method stub
+							
+							
 							Toast.makeText(Main.this, "Your income has been safely stored.", Toast.LENGTH_LONG).show();
+							
+							//login_activity
+							//String name = spinner1.getSelectedItem().toString();
+							//main_Activity
+							//if (name.toString().equals("INT")){
 						}
 					});
 			
