@@ -22,8 +22,9 @@
        android:layout_height="wrap_content"
        android:layout_alignBottom="@+id/fragment1TitleSavings"
        android:layout_alignLeft="@+id/fragment1TV1"
+       android:layout_toLeftOf="@+id/fragment1TitleSavings"
        android:layout_alignTop="@+id/fragment1TitleSavings"
-       android:src="@drawable/incomeicon" />
+       android:src="@drawable/coin" />
 
    <TextView
        android:id="@+id/fragment1TitleSavings"

@@ -31,6 +31,12 @@ public class SessionManager {
     public static final String KEY_SAVINGS = "savings";
     
     public static final String KEY_FRAGMENTDEFAULT = "fragmentdefault";
+    
+    public static final String KEY_GOAL = "goal";
+    
+    public static final String KEY_GOALNAME = "goalname";
+    
+    public static final String KEY_GOALPRICE = "goalprice";
      
     // Email address (make variable public to access from outside)
     public static final String KEY_EMAIL = "email";
@@ -68,6 +74,27 @@ public class SessionManager {
        
         editor.commit();
     }
+    public void goal(String goal){
+    	editor.putBoolean(IS_LOGIN, true);        
+        
+        editor.putString(KEY_FRAGMENTDEFAULT, goal);
+       
+        editor.commit();
+    }
+    public void goalName(String goalname){
+    	editor.putBoolean(IS_LOGIN, true);        
+        
+        editor.putString(KEY_FRAGMENTDEFAULT, goalname);
+       
+        editor.commit();
+    }
+    public void goalPrice(String goalprice){
+    	editor.putBoolean(IS_LOGIN, true);        
+        
+        editor.putString(KEY_FRAGMENTDEFAULT, goalprice);
+       
+        editor.commit();
+    }
     //Leer los datos del editor para crear la escena
     /**
      * Get stored session data
@@ -82,6 +109,10 @@ public class SessionManager {
         
      // user savings id
         user.put(KEY_FRAGMENTDEFAULT, pref.getString(KEY_FRAGMENTDEFAULT, "0"));
+        
+        user.put(KEY_GOAL, pref.getString(KEY_GOAL, "0"));
+        user.put(KEY_GOALNAME, pref.getString(KEY_GOALNAME, "0"));
+        user.put(KEY_GOALPRICE, pref.getString(KEY_GOALPRICE, "0"));
          
         // return user
         return user;

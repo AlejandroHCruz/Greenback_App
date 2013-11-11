@@ -32,8 +32,8 @@
         <item>From Savings</item>
     </string-array>
     <string-array name="IncomeCategories">
-        <item>Weekly Budget</item>
-        <item>Savings</item>
+        <item>To Weekly Budget</item>
+        <item>To Savings</item>
     </string-array>
     <string-array name="SavingsCategories">
         <item>Weekly Budget to Savings</item>

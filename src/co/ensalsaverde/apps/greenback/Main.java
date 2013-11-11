@@ -65,6 +65,7 @@ public class Main extends SherlockFragmentActivity {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.main);
 		
+		getSupportActionBar().setIcon(R.drawable.alertdialogicon);
 		SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(Main.this);
         SharedPreferences.Editor editor = preferences.edit();
         session = new SessionManager(getBaseContext());				       		
@@ -367,7 +368,7 @@ public class Main extends SherlockFragmentActivity {
 				               String StringSavings = user.get(SessionManager.KEY_SAVINGS);
 				               String StringBudget = user.get(SessionManager.KEY_BUDGET);
 				             
-				               if (selectedItem.toString().equals("Savings")){
+				               if (selectedItem.toString().equals("To Savings")){
 					               int intSavings = Integer.parseInt(StringSavings.toString());
 					               int intTotalSavings = intSavings + intIncome;
 					               String StringTotalSavings = ""+intTotalSavings;
@@ -380,7 +381,7 @@ public class Main extends SherlockFragmentActivity {
 					               
 					               Toast.makeText(Main.this, "yay! you saved $"+intIncome +" more", Toast.LENGTH_LONG).show();
 				             }
-				             if (selectedItem.toString().equals("Weekly Budget")){
+				             if (selectedItem.toString().equals("To Weekly Budget")){
 					            // weekly Budget  
 					               int intBudget = Integer.parseInt(StringBudget.toString());
 					               int intTotalBudget = intBudget + intIncome;

@@ -4,7 +4,7 @@
 # view res/layout/main.xml #generated:1
 -keep class android.support.v4.widget.DrawerLayout { <init>(...); }
 
-# view AndroidManifest.xml #generated:32
+# view AndroidManifest.xml #generated:33
 -keep class co.ensalsaverde.apps.greenback.Fragment_1 { <init>(...); }
 
 # view AndroidManifest.xml #generated:27
@@ -13,10 +13,10 @@
 # view AndroidManifest.xml #generated:19
 -keep class co.ensalsaverde.apps.greenback.Main { <init>(...); }
 
-# view AndroidManifest.xml #generated:38
+# view AndroidManifest.xml #generated:39
 -keep class co.ensalsaverde.apps.greenback.SendToDrive { <init>(...); }
 
-# view AndroidManifest.xml #generated:43
+# view AndroidManifest.xml #generated:44
 -keep class co.ensalsaverde.apps.greenback.Sources { <init>(...); }
 
 # view res/layout/abs__screen_action_bar.xml #generated:43
