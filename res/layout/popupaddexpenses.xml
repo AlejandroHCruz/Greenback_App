@@ -15,27 +15,6 @@
       <requestFocus />
   </EditText>
 
-  <!--  <Button
-      android:id="@+id/buttonSaveExpenses"
-      android:layout_width="wrap_content"
-      android:layout_height="wrap_content"
-      android:layout_alignBaseline="@+id/buttonCancelExpenses"
-      android:layout_alignBottom="@+id/buttonCancelExpenses"
-      android:layout_alignParentRight="true"
-      android:layout_marginRight="10dp"
-      android:layout_marginBottom="10dp"
-      android:text="Save" />
-
-  <Button
-      android:id="@+id/buttonCancelExpenses"
-      android:layout_width="wrap_content"
-      android:layout_height="wrap_content"
-      android:layout_below="@+id/spinnerexpenses"
-      android:layout_marginTop="20dp"
-      android:layout_marginBottom="10dp"
-      android:layout_toLeftOf="@+id/buttonSaveExpenses"
-      android:text="Cancel" /> -->
-
   <Spinner
       android:id="@+id/spinnerexpenses"
       android:layout_width="match_parent"
@@ -44,6 +23,15 @@
       android:layout_below="@+id/NumberExpensesTextView"
       android:layout_marginTop="20dp"
       android:entries="@array/ExpensesCategories"
+      android:prompt="@string/SelectACategorie" />
+  <Spinner
+      android:id="@+id/spinnerexpenses2"
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content"
+      android:layout_alignParentLeft="true"
+      android:layout_below="@+id/spinnerexpenses"
+      android:layout_marginTop="20dp"
+      android:entries="@array/ExpensesCategories2"
       android:prompt="@string/SelectACategorie" />
   
 </RelativeLayout>

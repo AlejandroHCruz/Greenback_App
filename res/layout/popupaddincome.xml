@@ -4,7 +4,7 @@
     android:layout_height="match_parent">
 
   <EditText
-      android:id="@+id/NumberExpensesTextView"
+      android:id="@+id/NumberIncomeTextView"
       android:layout_width="wrap_content"
       android:layout_height="wrap_content"
       android:layout_alignParentTop="true"
@@ -14,28 +14,15 @@
 
       <requestFocus />
   </EditText>
-
-  <!-- <Button
-      android:id="@+id/buttonSaveIncome"
-      android:layout_width="wrap_content"
+<Spinner
+      android:id="@+id/spinnerincome"
+      android:layout_width="match_parent"
       android:layout_height="wrap_content"
-      android:layout_alignBaseline="@+id/buttonCancelIncome"
-      android:layout_alignBottom="@+id/buttonCancelIncome"
-      android:layout_alignParentRight="true"
-      android:layout_marginRight="10dp"
-      android:layout_marginBottom="10dp"
-      android:text="Save" />
-
-  <Button
-      android:id="@+id/buttonCancelIncome"
-      android:layout_width="wrap_content"
-      android:layout_height="wrap_content"
-      android:layout_marginTop="55dp"
-      android:layout_marginBottom="10dp"
-      android:layout_toLeftOf="@+id/buttonSaveIncome"
-      android:text="Cancel" />
-
- 	-->
+      android:layout_alignParentLeft="true"
+      android:layout_below="@+id/NumberIncomeTextView"
+      android:layout_marginTop="20dp"
+      android:entries="@array/IncomeCategories"
+      android:prompt="@string/SelectACategorie" />
   
 </RelativeLayout>
   

@@ -4,7 +4,7 @@
         android:id="@+id/continueLogin"
         android:orderInCategory="0"
         android:showAsAction="always"
-        android:title="Continue"
+        android:title="Return"
         android:visible="true" />
 
 </menu>

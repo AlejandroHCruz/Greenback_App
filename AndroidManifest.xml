@@ -17,7 +17,7 @@
         android:label="@string/app_name"
         android:theme="@style/AppTheme" >
         <activity
-            android:name="co.ensalsaverde.apps.greenback.Login"
+            android:name="co.ensalsaverde.apps.greenback.Main"
             android:label="@string/app_name" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -25,7 +25,12 @@
             </intent-filter>
         </activity>
         <activity
-            android:name="co.ensalsaverde.apps.greenback.Main"
+            android:name="co.ensalsaverde.apps.greenback.Login"
+            android:label="@string/app_name" >                
+                <category android:name="android.intent.category.DEFAULT" />
+        </activity>
+        <activity
+            android:name="co.ensalsaverde.apps.greenback.Fragment_1"
             android:label="@string/app_name" >                
                 <category android:name="android.intent.category.DEFAULT" />
         </activity>

@@ -1,13 +1,15 @@
 package co.ensalsaverde.apps.greenback;
 
-import android.app.Activity;
+import java.util.HashMap;
+
 import android.app.AlertDialog;
-import android.app.Dialog;
 import android.content.DialogInterface;
 import android.content.DialogInterface.OnClickListener;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.content.res.Configuration;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.support.v4.app.ActionBarDrawerToggle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
@@ -20,6 +22,7 @@ import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.Spinner;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.actionbarsherlock.app.SherlockFragmentActivity;
@@ -30,6 +33,7 @@ import com.actionbarsherlock.view.MenuItem;
 
 
 public class Main extends SherlockFragmentActivity {
+	public final static String EXTRA_MESSAGE = "co.ensalsaverde.apps.greenback.MESSAGE";
 	private DrawerLayout mDrawerLayout;
 	private ListView mDrawerList;
 	private ActionBarDrawerToggle mDrawerToggle;
@@ -37,27 +41,8 @@ public class Main extends SherlockFragmentActivity {
 	private CharSequence mDrawerTitle;
 	private CharSequence mTitle;
 	private String[] mFragmentTitles;
-	
-	
-	//PARA SHARED PREFERENCES
-	//private final String SpinnerValue = "SpinnerValue";
-	//private final String UniqueIncome = "UniqueIncome";
-
-	// Alert Dialog Manager declaration
-	//AddExpensesAlertDialogManager alertExpenses = new AddExpensesAlertDialogManager();
-
 	// Session Manager Class
-	// SessionManager session;
-
-	// SHARED PREFERENCESS
-	//ESTO DA UN PUTO ERROR!!!!!!!!!!
-	
-	//SharedPreferences myPrefs = this.getSharedPreferences("myPrefs",
-		//	MODE_WORLD_READABLE);
-	//SharedPreferences.Editor prefsEditor = myPrefs.edit();
-
-	// prefsEditor.putString(UniqueIncome, "f664.PNG");
-	// prefsEditor.commit();
+    SessionManager session;
 	
 	//Spinner Setup
 	LayoutInflater li = null;
@@ -65,22 +50,27 @@ public class Main extends SherlockFragmentActivity {
 	View promptsView = null;
 	
 	Spinner SpinnerExpenses = null;
+	Spinner SpinnerExpenses2 = null;
+	Spinner SpinnerIncome = null;
+	
+	TextView tvSavings, tvBudget = null;
+	
 	int intIncome = 0;
 	int intOutcome = 0;
+	int intEditTextSavings = 0;
+	
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.main);
 		
-		
-
-		// Session Manager
-		// session = new SessionManager(getApplicationContext());
-
-		// SHARED PREFERENCES
-		//prefsEditor.putString(SpinnerValue, "");
-		//prefsEditor.commit();
+		SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(Main.this);
+        SharedPreferences.Editor editor = preferences.edit();
+        session = new SessionManager(getBaseContext());				       		
+        HashMap<String, String> user = session.getUserDetails();       
+        String fragmentDefault = user.get(SessionManager.KEY_FRAGMENTDEFAULT);
+        int intFragmentDefault = Integer.parseInt(fragmentDefault.toString());
 
 		// NAV DRAWER
 		mTitle = mDrawerTitle = getTitle();
@@ -114,7 +104,7 @@ public class Main extends SherlockFragmentActivity {
 		};
 		mDrawerLayout.setDrawerListener(mDrawerToggle);
 		if (savedInstanceState == null) {
-			selectItem(0);
+			selectItem(intFragmentDefault);
 		}
 	}
 
@@ -133,14 +123,8 @@ public class Main extends SherlockFragmentActivity {
 		return true;
 	}
 
-	// Save the Value of the Spinner to the shared preferences
-	//public void SavePrefsSpinner(String value) {
-		//prefsEditor.putString(SpinnerValue, value);
-		//prefsEditor.commit();
-
-//	}
-
 	public boolean onOptionsItemSelected(MenuItem item) {
+		
 		switch (item.getItemId()) {
 		case android.R.id.home:
 			if (mDrawerLayout.isDrawerOpen(mDrawerList)) {
@@ -152,46 +136,121 @@ public class Main extends SherlockFragmentActivity {
 			
 			
 		//Connect and send to to GOOGLE DRIVE
-		case R.id.driveConnection:
-			Intent i = new Intent(Main.this, SendToDrive.class);
-			startActivity(i);
+		case R.id.savingsmenu:
+			//antes era el menú para mandar a drive
+			//Intent i = new Intent(Main.this, SendToDrive.class);
+			//startActivity(i);
+			//return true;
+			LayoutInflater li3 = LayoutInflater.from(Main.this);	
+			final View promptsView3 = li3.inflate(R.layout.popupaddtransfer, null);
+			final Spinner SpinnerSavings = (Spinner) promptsView3
+					.findViewById(R.id.spinnersavings);
+			AlertDialog.Builder alertDialogBuilder3 = new AlertDialog.Builder(
+					Main.this);
+
+			alertDialogBuilder3.setView(promptsView3);
+
+			       //Set dialog message
+			alertDialogBuilder3.setIcon(R.drawable.driveconnecticon);
+			alertDialogBuilder3.setTitle("Transfer Your Money");
+			alertDialogBuilder3
+					.setMessage("Enter the amount:");
+			alertDialogBuilder3.setPositiveButton("Save",
+					new OnClickListener() {
+
+						@Override
+						public void onClick(DialogInterface dialog, int which) {
+							// WHEN SAVE SAVINGS IS CLICKED
+							final EditText EditTextSavings =(EditText) promptsView.findViewById(R.id.NumberSavingsTextView);
+							 intEditTextSavings = Integer.parseInt(EditTextSavings.getText().toString());
+							//agarrar la cantidad actual desde shared preferences, restarle esta nueva cantidad, sumárselo a savings y volver a guardarla.
+							 SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(Main.this);
+				               SharedPreferences.Editor editor = preferences.edit();
+				               String selectedItemSavings = SpinnerSavings.getSelectedItem().toString();
+				            // get user data from session
+				               session = new SessionManager(getBaseContext());				       		
+				               HashMap<String, String> user = session.getUserDetails();       
+				               // dinero
+				               String StringBudget = user.get(SessionManager.KEY_BUDGET);
+				               int intBudget = Integer.parseInt(StringBudget.toString());
+				               String StringSavings = user.get(SessionManager.KEY_SAVINGS);
+				               int intSavings = Integer.parseInt(StringSavings.toString());
+				               
+				               if (selectedItemSavings.toString().equals("Weekly Budget to Savings")){
+				            	   int intMinusBudget = intBudget - intEditTextSavings;
+				            	   String StringTotalBudget = ""+intMinusBudget; 
+				            	   int intTotalSavings = intSavings + intEditTextSavings;
+				            	   String StringTotalSavings = ""+intTotalSavings;				            	   
+				            	   session.createLoginSession(StringTotalBudget);
+				            	   session.transfer(StringTotalSavings);
+				            	   System.out.println("Total savings = " + StringTotalSavings);	
+				            	   int numberOfFragment = 1;
+					               String StringNumberOfFragment = ""+numberOfFragment;
+					               session.fragmentDefault(StringNumberOfFragment);
+				            	   Toast.makeText(Main.this, "$"+intEditTextSavings +" were transfered to your savings", Toast.LENGTH_LONG).show();
+				               		}
+				               if (selectedItemSavings.toString().equals("Savings to Weekly Budget")){
+				            	   int intMinusSavings = intSavings - intEditTextSavings;
+				            	   String StringTotalSavings = ""+intMinusSavings; 
+				            	   int intTotalBudget = intBudget + intEditTextSavings;
+				            	   String StringTotalBudget = ""+intTotalBudget;				            	   
+				            	   session.createLoginSession(StringTotalBudget);
+				            	   session.transfer(StringTotalSavings);
+				            	   System.out.println("Total savings = " + StringTotalSavings);	
+				            	   int numberOfFragment = 0;
+					               String StringNumberOfFragment = ""+numberOfFragment;
+					               session.fragmentDefault(StringNumberOfFragment);
+				            	   Toast.makeText(Main.this, "$"+intEditTextSavings +" were transfered to your budget", Toast.LENGTH_LONG).show();
+				               		}
+				               
+							  //Hace refresh a la actividad para que el contenido se actualice dinámicamente.
+							  Intent intent = getIntent();
+							  intent.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
+				               finish();
+				               startActivity(intent);
+				               
+							 
+							
+								
+
+						}
+					});
 			
+			alertDialogBuilder3.setNegativeButton("Cancel", 					
+					new OnClickListener() {
+
+						@Override
+						public void onClick(DialogInterface dialog, int which) {
+							// TODO Auto-generated method stub
+
+						}
+					});
+
+			
+			//create alert dialog
+			final AlertDialog alertDialog3 = alertDialogBuilder3.create();
+			alertDialog3.show();
 			return true;
-			
-			// If settings is clicked
-			
-		/*case R.id.action_settings:
-			Intent i = new Intent(Main.this, Sources.class);
-			startActivity(i);
-			return true;*/ 
 
-		case R.id.addExpense:
-
-			// -------------THIS WORKED WITH AddExpensesAlertDialogManager Class----------
-			// Show Alert Dialog
-			// alertExpenses.showAlertDialog(Main.this, "Add a new expense",
-			// "Please enter the data", false);
-			// before the return.... Spinner spinnerExpenses =
-			// (Spinner)findViewById(R.id.spinnerexpenses);
-
+		case R.id.addExpense:	
+			//-----------------------ClickOn Expenses (Alert Dialog)---------------------			
 			
-			//-----------------------ClickOn Expenses---------------------
-			
-			
-			LayoutInflater li = LayoutInflater.from(Main.this);
-			
+			LayoutInflater li = LayoutInflater.from(Main.this);			
 			promptsView = li.inflate(R.layout.popupaddexpenses, null);
 			final Spinner SpinnerExpenses = (Spinner) promptsView
 					.findViewById(R.id.spinnerexpenses);
+			final Spinner SpinnerExpenses2 = (Spinner) promptsView
+					.findViewById(R.id.spinnerexpenses2);
 
 			AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(
 					Main.this);
 
 			alertDialogBuilder.setView(promptsView);
 
-			 //Set dialog message
+			       //Set dialog message
 
 			alertDialogBuilder.setTitle("Add a new expense");
+			alertDialogBuilder.setIcon(R.drawable.outcomeicon);
 			alertDialogBuilder
 					.setMessage("Enter the amount and select a category");
 			alertDialogBuilder.setPositiveButton("Save",
@@ -202,9 +261,43 @@ public class Main extends SherlockFragmentActivity {
 							// WHEN SAVE EXPENSES IS CLICKED
 							final EditText outcome =(EditText) promptsView.findViewById(R.id.NumberExpensesTextView);
 							 intOutcome = Integer.parseInt(outcome.getText().toString());
-							 System.out.println(intOutcome);
-							String selectedItem = SpinnerExpenses.getSelectedItem().toString();
-							Toast.makeText(Main.this, "$"+intOutcome +" were retired from " + selectedItem, Toast.LENGTH_LONG).show();
+							//agarrar la cantidad actual desde shared preferences, sumarle el income y volver a guardarla.
+							 SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(Main.this);
+				               SharedPreferences.Editor editor = preferences.edit();
+				               String selectedItem2 = SpinnerExpenses2.getSelectedItem().toString();
+				            // get user data from session
+				               session = new SessionManager(getBaseContext());				       		
+				               HashMap<String, String> user = session.getUserDetails();       
+				               // dinero
+				               String StringBudget = user.get(SessionManager.KEY_BUDGET);
+				               String StringSavings = user.get(SessionManager.KEY_SAVINGS);
+				               
+				               if (selectedItem2.toString().equals("From Weekly Budget")){
+				            	   int intBudget = Integer.parseInt(StringBudget.toString());				               
+				            	   int intMinusBudget = intBudget - intOutcome;
+				            	   String StringMinusBudget = ""+intMinusBudget;
+				            	   session.createLoginSession(StringMinusBudget);				             			              
+				            	   System.out.println(intOutcome);
+				            	   String selectedItem = SpinnerExpenses.getSelectedItem().toString();
+				            	   Toast.makeText(Main.this, "$"+intOutcome +" were spent on " + selectedItem + " from your weekly budget", Toast.LENGTH_LONG).show();
+				               }
+				               if (selectedItem2.toString().equals("From Savings")){
+				            	   int intSavings = Integer.parseInt(StringSavings.toString());				               
+				            	   int intMinusSavings = intSavings - intOutcome;
+				            	   String StringMinusSavings = ""+intMinusSavings;
+				            	   session.transfer(StringMinusSavings);				             			              
+				            	   System.out.println(intOutcome);
+				            	   String selectedItem = SpinnerExpenses.getSelectedItem().toString();
+				            	   Toast.makeText(Main.this, "$"+intOutcome +" were spent on " + selectedItem + " from your savings", Toast.LENGTH_LONG).show();
+				               }
+							  //Hace refresh a la actividad para que el contenido se actualice dinámicamente.
+							  Intent intent = getIntent();
+							  intent.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
+				               finish();
+				               startActivity(intent);
+				               
+							 
+							
 								
 
 						}
@@ -224,49 +317,28 @@ public class Main extends SherlockFragmentActivity {
 			
 			//create alert dialog
 			final AlertDialog alertDialog = alertDialogBuilder.create();
-
-			
-			
-			/*final Button SaveExpenses = (Button) promptsView
-					.findViewById(R.id.buttonSaveExpenses);
-			final Button CancelExpenses = (Button) promptsView
-					.findViewById(R.id.buttonSaveExpenses); */
-
-			//Reference UI elements from my_dialog_layout in similar fashion
-
-			//String value; para esto de abajo
-			// Pasar un objeto, recibirlo alla como constructor para poder
-			// acceder a Ã©l.
-			
-			//SpinnerExpenses
-				//	.setOnItemSelectedListener(new OnExpensesSpinnerItemClicked());
-
 			alertDialog.show();
-
 			return true;
 			
-			//--------------Termina el Expenses------------------
+			//--------------Termina el Expenses (Alert Dialog)------------------
 
-			// INCOME YEAH!!!!!!!!!!!
+
 			
 			//------------------ClickOn Income--------------------
 
 		case R.id.addIncome:
-			// THIS WORKED WITH AddExpensesAlertDialogManager Class
-			// Show Alert Dialog
-			// alertExpenses.showAlertDialog(Main.this, "Add a new expense",
-			// "Please enter the data", false);
-			// before the return.... Spinner spinnerExpenses =
-			// (Spinner)findViewById(R.id.spinnerexpenses);
-			
+			//-------------------Income (Alert Dialog)-----------------------------
 			 LayoutInflater li2 = LayoutInflater.from(Main.this);
 			final View promptsView2 = li2.inflate(R.layout.popupaddincome, null);
+			final Spinner SpinnerIncome = (Spinner) promptsView2
+					.findViewById(R.id.spinnerincome);
+			 tvSavings = (TextView) findViewById(R.id.fragment1TitleSavings);
+			 tvBudget = (TextView) findViewById(R.id.fragment2TitleSavings);
+			
 			AlertDialog.Builder alertDialogBuilder2 = new AlertDialog.Builder(Main.this);
-
 			alertDialogBuilder2.setView(promptsView2);
 
 			// Set dialog message
-
 			alertDialogBuilder2.setTitle("Add a new income");
 			alertDialogBuilder2.setMessage("Enter the amount and enjoy your new money!");
 			alertDialogBuilder2.setIcon(R.drawable.incomeicon);
@@ -277,13 +349,55 @@ public class Main extends SherlockFragmentActivity {
 						public void onClick(DialogInterface dialog, int which) {
 							// TODO Auto-generated method stub
 							
-							final EditText income =(EditText) promptsView2.findViewById(R.id.NumberExpensesTextView);
+							final EditText income =(EditText) promptsView2.findViewById(R.id.NumberIncomeTextView);
 							 intIncome = Integer.parseInt(income.getText().toString());
-							
-							System.out.println(intIncome);
-							
-							Toast.makeText(Main.this, "$"+intIncome +" had been safely stored to your savings.", Toast.LENGTH_LONG).show();
-							
+							 
+							// Intent intent = new Intent();
+						    //	intent.putExtra(EXTRA_MESSAGE, intIncome);
+						    //	startActivity(intent);
+							 
+							 //agarrar la cantidad actual desde shared preferences, sumarle el income y volver a guardarla.
+							 SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(Main.this);
+				               SharedPreferences.Editor editor = preferences.edit();
+				               String selectedItem = SpinnerIncome.getSelectedItem().toString();
+				               
+				            // get user data from session
+				               session = new SessionManager(getBaseContext());				       		
+				               HashMap<String, String> user = session.getUserDetails();  
+				               String StringSavings = user.get(SessionManager.KEY_SAVINGS);
+				               String StringBudget = user.get(SessionManager.KEY_BUDGET);
+				             
+				               if (selectedItem.toString().equals("Savings")){
+					               int intSavings = Integer.parseInt(StringSavings.toString());
+					               int intTotalSavings = intSavings + intIncome;
+					               String StringTotalSavings = ""+intTotalSavings;
+					               session.transfer(StringTotalSavings);
+					               int numberOfFragment = 1;
+					               String StringNumberOfFragment = ""+numberOfFragment;
+					               session.fragmentDefault(StringNumberOfFragment);
+					               System.out.println(intTotalSavings);
+					              // tvSavings.setText(""+intTotalSavings);
+					               
+					               Toast.makeText(Main.this, "yay! you saved $"+intIncome +" more", Toast.LENGTH_LONG).show();
+				             }
+				             if (selectedItem.toString().equals("Weekly Budget")){
+					            // weekly Budget  
+					               int intBudget = Integer.parseInt(StringBudget.toString());
+					               int intTotalBudget = intBudget + intIncome;
+					               String StringTotalBudget = ""+intTotalBudget;
+					               session.createLoginSession(StringTotalBudget);
+					               int numberOfFragment = 0;
+					               String StringNumberOfFragment = ""+numberOfFragment;
+					               session.fragmentDefault(StringNumberOfFragment);
+					               System.out.println(intTotalBudget);
+					             //  tvBudget.setText(StringTotalBudget);
+					               Toast.makeText(Main.this, "yay! you got $"+intIncome +" more", Toast.LENGTH_LONG).show();
+				             }
+							  //Hace refresh a la actividad para que el contenido se actualice dinámicamente.
+							  Intent intent = getIntent();
+							  intent.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
+				               finish();
+				               startActivity(intent);
 						}
 
 						
@@ -301,39 +415,7 @@ public class Main extends SherlockFragmentActivity {
 
 			// create alert dialog
 			final AlertDialog alertDialog2 = alertDialogBuilder2.create();
-			
-			// Reference UI elements from my_dialog_layout in similar fashion
-
-				//DECLARANDO BOTON QUE YA NO USO
-			 //Button SaveIncome = (Button) promptsView2
-			 //	.findViewById(R.id.buttonSaveIncome);
-			
-			
-			 //INTENTO DE ONTOUCH LISTENER!!!
-			 
-			// SaveIncome.setOnTouchListener(new
-			// OnIncomeSaveButton(promptsView2, alertDialog2));
-
-			 //Creo que esto no jala
-			 
-			/*
-			 * SaveIncome.setOnTouchListener(new View.OnTouchListener() { public
-			 * boolean onTouch(View arg0, MotionEvent arg1) { if
-			 * (arg1.getAction()==1){ alertDialog2.dismiss(); return true;} else
-			 * return false; } });
-			 */
-
-			/*
-			 * Button CancelIncome = (Button) promptsView2
-			 * .findViewById(R.id.buttonCancelIncome);
-			 * CancelIncome.setOnTouchListener(new View.OnTouchListener() {
-			 * public boolean onTouch(View arg0, MotionEvent arg1) { if
-			 * (arg1.getAction() == 1) { alertDialog2.cancel(); return true; }
-			 * else return false; } });
-			 */
-
 			alertDialog2.show();
-
 			return true;
 			
 			//----------------------Termina income--------------------
@@ -363,35 +445,38 @@ public class Main extends SherlockFragmentActivity {
 			newFragment = new Fragment_1();
 			fm.beginTransaction().replace(R.id.content_frame, newFragment)
 					.commit();
-			
-			/*TextView's FAIL
-			TextView t1, t4;
-			t1 = (TextView)findViewById(R.id.txtview1);
-			t1.setText("Fun");
-			t4 = (TextView)findViewById(R.id.txtview1);
-			t4.setText("50");*/
+			int numberOfFragment0 = 0;
+            String StringNumberOfFragment0 = ""+numberOfFragment0;
+            session.fragmentDefault(StringNumberOfFragment0);
+		
 			
 			break;
 		case 1:
 			newFragment = new Fragment_2();
 			fm.beginTransaction().replace(R.id.content_frame, newFragment)
 					.commit();
+			int numberOfFragment = 1;
+            String StringNumberOfFragment = ""+numberOfFragment;
+            session.fragmentDefault(StringNumberOfFragment);
 			break;
 		case 2:
 			newFragment = new Fragment_3();
 			fm.beginTransaction().replace(R.id.content_frame, newFragment)
 					.commit();
+			int numberOfFragment2 = 2;
+            String StringNumberOfFragment2 = ""+numberOfFragment2;
+            session.fragmentDefault(StringNumberOfFragment2);
 			break;
 		case 3:
 			newFragment = new Fragment_4();
 			fm.beginTransaction().replace(R.id.content_frame, newFragment)
 					.commit();
+			Intent intent = new Intent(Main.this, Login.class);	    	
+	    	startActivity(intent);
 			break;
 		case 4:
 			newFragment = new Fragment_5();
 			fm.beginTransaction().replace(R.id.content_frame, newFragment)
-					.addToBackStack(null) // Permite regresar al fragmento
-											// anterior con "back" DISQUE
 					.commit();
 			break;
 		}

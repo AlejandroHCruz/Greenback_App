@@ -13,10 +13,10 @@
     <string name="drawer_close">Close the Drawer</string>
     
     <string-array name="fragments">
-        <item>Quick View</item>
-        <item>Statistics</item>
+        <item>Budget</item>
+        <item>Savings</item>
         <item>Full Report</item>
-        <item>Calendar</item>
+        <item>Tutorial</item>
     </string-array>
     
     <string-array name="ExpensesCategories">
@@ -26,6 +26,18 @@
         <item>Home</item>
         <item>Transport</item>
         <item>Others</item>
+    </string-array>
+    <string-array name="ExpensesCategories2">
+        <item>From Weekly Budget</item>
+        <item>From Savings</item>
+    </string-array>
+    <string-array name="IncomeCategories">
+        <item>Weekly Budget</item>
+        <item>Savings</item>
+    </string-array>
+    <string-array name="SavingsCategories">
+        <item>Weekly Budget to Savings</item>
+        <item>Savings to Weekly Budget</item>
     </string-array>
     
     <string name="SelectACategorie">Select a categorie</string>

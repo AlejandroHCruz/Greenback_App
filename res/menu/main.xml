@@ -8,11 +8,11 @@
         -->
     
      <item
-        android:id="@+id/driveConnection"
+        android:id="@+id/savingsmenu"
         android:icon="@drawable/driveconnecticon"
         android:orderInCategory="0"
         android:showAsAction="always"
-        android:title="Send to Google Drive"/>
+        android:title="Transfer your cash"/>
     
     <item
     	android:id="@+id/addIncome"
@@ -20,6 +20,7 @@
         android:orderInCategory="2"
         android:showAsAction="always"
         android:title="Add an Income"/>
+    
         
     <item
         android:id="@+id/addExpense"

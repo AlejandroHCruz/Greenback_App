@@ -26,7 +26,11 @@ public class SessionManager {
     private static final String IS_LOGIN = "IsLoggedIn";
      
     // User name (make variable public to access from outside)
-    public static final String KEY_NAME = "name";
+    public static final String KEY_BUDGET = "budget";
+    
+    public static final String KEY_SAVINGS = "savings";
+    
+    public static final String KEY_FRAGMENTDEFAULT = "fragmentdefault";
      
     // Email address (make variable public to access from outside)
     public static final String KEY_EMAIL = "email";
@@ -41,17 +45,27 @@ public class SessionManager {
      * Create login session
      * */
     //Escribir los datos en el editor
-    public void createLoginSession(String name, String email){
+    public void createLoginSession(String budget){
         // Storing login value as TRUE
-        editor.putBoolean(IS_LOGIN, true);
-         
+        editor.putBoolean(IS_LOGIN, true);        
         // Storing name in pref
-        editor.putString(KEY_NAME, name);
-         
-        // Storing email in pref
-        editor.putString(KEY_EMAIL, email);
-         
+        editor.putString(KEY_BUDGET, budget);
         // commit changes
+        editor.commit();
+    }
+    //este metodo sirve para actualizar el valor de lo que tengamos en savings
+    public void transfer(String savings){
+    	editor.putBoolean(IS_LOGIN, true);        
+        
+        editor.putString(KEY_SAVINGS, savings);
+        // commit changes
+        editor.commit();
+    }
+    public void fragmentDefault(String fragmentdefault){
+    	editor.putBoolean(IS_LOGIN, true);        
+        
+        editor.putString(KEY_FRAGMENTDEFAULT, fragmentdefault);
+       
         editor.commit();
     }
     //Leer los datos del editor para crear la escena
@@ -60,11 +74,14 @@ public class SessionManager {
      * */
     public HashMap<String, String> getUserDetails(){
         HashMap<String, String> user = new HashMap<String, String>();
-        // user name
-        user.put(KEY_NAME, pref.getString(KEY_NAME, null));
+        // user weekly budget
+        user.put(KEY_BUDGET, pref.getString(KEY_BUDGET, "0"));
          
-        // user email id
-        user.put(KEY_EMAIL, pref.getString(KEY_EMAIL, null));
+        // user savings id
+        user.put(KEY_SAVINGS, pref.getString(KEY_SAVINGS, "0"));
+        
+     // user savings id
+        user.put(KEY_FRAGMENTDEFAULT, pref.getString(KEY_FRAGMENTDEFAULT, "0"));
          
         // return user
         return user;
