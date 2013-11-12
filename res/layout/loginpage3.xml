@@ -20,6 +20,7 @@
         android:layout_height="match_parent"
         android:layout_centerInParent="true"
         android:layout_marginTop="40dp"
+        android:textColor="#c54b5f"
         android:text="It's made for you."
         android:textAppearance="?android:attr/textAppearanceLarge" />
 
@@ -27,11 +28,20 @@
         android:id="@+id/viewpagertext3"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:layout_alignParentLeft="true"
-        android:layout_marginBottom="32dp"
+        android:layout_alignBottom="@+id/viewpagerimage3"
+        android:layout_alignLeft="@+id/textView1"
         android:inputType="textMultiLine"
-        android:text="If you're a (foreign) student or a young graduated, this app was created with your happiness in mind."
+        android:text="If you are a (foreign) student or a recent grad,"
         android:textAlignment="center" />
+
+    <TextView
+        android:id="@+id/textView1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/viewpagerimage3"
+        android:layout_centerHorizontal="true"
+        android:text="this app was made specially for your needs."
+        android:textColor="#12530d"
+        android:textStyle="bold" />
 
 </RelativeLayout>

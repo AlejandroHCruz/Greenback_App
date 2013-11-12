@@ -21,6 +21,7 @@
         android:layout_centerHorizontal="true"
 		android:layout_alignTop="@+id/viewpagerimage4"
 		android:layout_marginTop="30dp"
+		android:textColor="#c54b5f"
         android:text="Let's grow together."
         android:textAppearance="?android:attr/textAppearanceLarge" />
 
@@ -29,10 +30,22 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
-        android:layout_alignParentLeft="true"
+        android:layout_centerHorizontal="true"
         android:layout_marginBottom="32dp"
         android:inputType="textMultiLine"
-        android:text="
-        Let us begin! Click continue in the upper corner and enjoy!" />
+        android:text="Let us begin! Click return in the upper corner"
+         />
+
+    <TextView
+        android:id="@+id/textView1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="14dp"
+        android:text="Enjoy!" 
+        android:textColor="#12530d"
+        android:textStyle="bold"
+        />
 
 </RelativeLayout>

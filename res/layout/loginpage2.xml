@@ -21,6 +21,7 @@
         android:layout_centerHorizontal="true"
 		android:layout_alignTop="@+id/viewpagerimage2"
 		android:layout_marginTop="30dp"
+		android:textColor="#c54b5f"
         android:text="Gain control of your money."
         android:textAppearance="?android:attr/textAppearanceLarge" />
 
@@ -29,11 +30,21 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
-        android:layout_alignParentLeft="true"
+        android:layout_centerHorizontal="true"
         android:layout_marginBottom="32dp"
         android:inputType="textMultiLine"
-        android:text="
-        Greenback allows you to keep track of your incomes and expenses at all time. Also letting you save then in Google Drive"
+        android:text="Greenback allows you to keep track of your incomes and expenses at all time."
         android:textAlignment="center" />
+
+    <TextView
+        android:id="@+id/textView1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="14dp"
+        android:text="All this with the purpose of saving money."
+        android:textColor="#12530d"
+        android:textStyle="bold" />
 
 </RelativeLayout>

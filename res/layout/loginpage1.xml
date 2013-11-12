@@ -11,17 +11,9 @@
         android:layout_centerHorizontal="true"
         android:layout_centerVertical="true"
         android:layout_marginLeft="40dp"
+        android:layout_marginTop="25dp"
         android:layout_marginRight="40dp"
-        android:src="@drawable/viewpagerlogin1" />
-
-    <TextView
-        android:id="@+id/viewpagertittle1"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_centerHorizontal="true"
-		android:layout_alignTop="@+id/viewpagerimage1"
-        android:text="Welcome to Greenback!"
-        android:textAppearance="?android:attr/textAppearanceLarge" />
+        android:src="@drawable/viewpagerloginone" />
 
     <TextView
         android:id="@+id/viewpagertext1"
@@ -30,7 +22,29 @@
         android:layout_below="@+id/viewpagerimage1"
         android:layout_centerHorizontal="true"
         android:textAlignment="center"
-        android:text="Greenback is the easiest and the most versatile app to keep track of your personal finances." 
+        android:text="Greenback is the easiest way to keep track of your personal finances." 
         android:inputType="textMultiLine" />
+
+    <TextView
+        android:id="@+id/viewpagertittle1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/viewpagerimage1"
+        android:layout_alignLeft="@+id/viewpagerimage1"
+        android:text="Welcome to Greenback´s tutorial"
+        android:textColor="#c54b5f"
+        android:textAlignment="center"
+        android:textAppearance="?android:attr/textAppearanceLarge" />
+
+    <TextView
+        android:id="@+id/viewpagertext2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@+id/viewpagertext1"
+        android:layout_alignLeft="@+id/viewpagerimage1"
+        android:layout_marginLeft="73dp"
+        android:textColor="#12530d"
+        android:textStyle="bold"
+        android:text=" Scroll to the left to start." />
 
 </RelativeLayout>

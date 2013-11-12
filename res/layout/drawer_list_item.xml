@@ -6,5 +6,7 @@
     android:paddingLeft="16dp"
     android:paddingRight="16dp"
     android:gravity="center_vertical"
-    android:textColor="#fff"
+    android:textColor="#12530d"
+    android:textStyle="bold"
+    android:background="#eee"
     android:minHeight="48dp"/>

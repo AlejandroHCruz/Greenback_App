@@ -13,6 +13,7 @@
        android:layout_alignParentTop="true"
        android:layout_centerHorizontal="true"
        android:layout_marginTop="30dp"
+       android:textColor="#c54b5f"
        android:text="You currently have:"
        android:textAppearance="?android:attr/textAppearanceLarge" />
 

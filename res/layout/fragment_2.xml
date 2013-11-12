@@ -13,6 +13,7 @@
        android:layout_alignParentTop="true"
        android:layout_centerHorizontal="true"
        android:layout_marginTop="30dp"
+       android:textColor="#c54b5f"
        android:text="You have saved:"
        android:textAppearance="?android:attr/textAppearanceLarge" />
 
@@ -31,7 +32,7 @@
        android:layout_marginTop="55dp"
        android:text="0"
        android:textAppearance="?android:attr/textAppearanceMedium"
-       android:textSize="50dp" />
+       android:textSize="35dp" />
 
    <Button
        android:id="@+id/button1"
@@ -40,7 +41,8 @@
        android:layout_alignParentBottom="true"
        android:layout_centerHorizontal="true"
        android:layout_marginBottom="20dp"
-       android:background="#0da79f"
+       android:background="#04a89f"
+       android:textColor="#ffffff"
        android:text="Set a Goal" />
    
 </RelativeLayout>
