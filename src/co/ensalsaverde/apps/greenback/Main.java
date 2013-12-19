@@ -69,7 +69,9 @@ public class Main extends SherlockFragmentActivity {
 		SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(Main.this);
         SharedPreferences.Editor editor = preferences.edit();
         session = new SessionManager(getBaseContext());				       		
-        HashMap<String, String> user = session.getUserDetails();       
+        HashMap<String, String> user = session.getUserDetails();   
+        
+
         String fragmentDefault = user.get(SessionManager.KEY_FRAGMENTDEFAULT);
         int intFragmentDefault = Integer.parseInt(fragmentDefault.toString());
 
@@ -162,7 +164,7 @@ public class Main extends SherlockFragmentActivity {
 						@Override
 						public void onClick(DialogInterface dialog, int which) {
 							// WHEN SAVE SAVINGS IS CLICKED
-							final EditText EditTextSavings =(EditText) promptsView.findViewById(R.id.NumberSavingsTextView);
+							final EditText EditTextSavings =(EditText) promptsView3.findViewById(R.id.NumberSavingsTextView);
 							 intEditTextSavings = Integer.parseInt(EditTextSavings.getText().toString());
 							//agarrar la cantidad actual desde shared preferences, restarle esta nueva cantidad, sumárselo a savings y volver a guardarla.
 							 SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(Main.this);
@@ -508,6 +510,10 @@ public class Main extends SherlockFragmentActivity {
 		super.onConfigurationChanged(newConfig);
 		mDrawerToggle.onConfigurationChanged(newConfig);
 	}
-	
+	public void onGoalButtonClicked(View view){
+		Intent a = new Intent(view.getContext(), Goals.class);
+        startActivity(a); 
+        
+	}
 	
 }
