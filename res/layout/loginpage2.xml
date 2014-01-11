@@ -33,7 +33,7 @@
         android:layout_centerHorizontal="true"
         android:layout_marginBottom="32dp"
         android:inputType="textMultiLine"
-        android:text="Greenback allows you to keep track of your incomes and expenses at all time."
+        android:text="Set a goal and visualize your progress towards achieving it."
         android:textAlignment="center" />
 
     <TextView
@@ -43,7 +43,7 @@
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
         android:layout_marginBottom="14dp"
-        android:text="All this with the purpose of saving money."
+        android:text="What do you want to spend your savings on?"
         android:textColor="#12530d"
         android:textStyle="bold" />
 

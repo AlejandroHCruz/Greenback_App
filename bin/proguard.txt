@@ -4,19 +4,25 @@
 # view res/layout/main.xml #generated:1
 -keep class android.support.v4.widget.DrawerLayout { <init>(...); }
 
-# view AndroidManifest.xml #generated:33
+# view AndroidManifest.xml #generated:36
 -keep class co.ensalsaverde.apps.greenback.Fragment_1 { <init>(...); }
 
-# view AndroidManifest.xml #generated:27
+# view AndroidManifest.xml #generated:42
+-keep class co.ensalsaverde.apps.greenback.Fragment_2 { <init>(...); }
+
+# view AndroidManifest.xml #generated:54
+-keep class co.ensalsaverde.apps.greenback.Goals { <init>(...); }
+
+# view AndroidManifest.xml #generated:29
 -keep class co.ensalsaverde.apps.greenback.Login { <init>(...); }
 
-# view AndroidManifest.xml #generated:19
+# view AndroidManifest.xml #generated:20
 -keep class co.ensalsaverde.apps.greenback.Main { <init>(...); }
 
-# view AndroidManifest.xml #generated:39
+# view AndroidManifest.xml #generated:48
 -keep class co.ensalsaverde.apps.greenback.SendToDrive { <init>(...); }
 
-# view AndroidManifest.xml #generated:44
+# view AndroidManifest.xml #generated:60
 -keep class co.ensalsaverde.apps.greenback.Sources { <init>(...); }
 
 # view res/layout/abs__screen_action_bar.xml #generated:43
@@ -80,4 +86,7 @@
 
 # view res/layout/abs__search_view.xml #generated:84
 -keep class com.actionbarsherlock.widget.SearchView$SearchAutoComplete { <init>(...); }
+
+# onClick res/layout/fragment_2.xml #generated:31
+-keepclassmembers class * { *** onGoalButtonClicked(...); }
 

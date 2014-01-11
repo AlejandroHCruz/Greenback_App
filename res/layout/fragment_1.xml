@@ -3,20 +3,9 @@
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
     android:gravity="center_horizontal"
-    android:orientation="vertical" >
-    
-
-   <TextView
-       android:id="@+id/fragment1TV1"
-       android:layout_width="wrap_content"
-       android:layout_height="wrap_content"
-       android:layout_alignParentTop="true"
-       android:layout_centerHorizontal="true"
-       android:layout_marginTop="30dp"
-       android:textColor="#c54b5f"
-       android:text="You currently have:"
-       android:textAppearance="?android:attr/textAppearanceLarge" />
-
+    android:orientation="vertical"
+    android:background="@drawable/wallpaperbudget"
+     >
    <ImageView
        android:id="@+id/imageView1"
        android:layout_width="wrap_content"
@@ -25,21 +14,20 @@
        android:layout_alignLeft="@+id/fragment1TV1"
        android:layout_toLeftOf="@+id/fragment1TitleSavings"
        android:layout_alignTop="@+id/fragment1TitleSavings"
-       android:src="@drawable/coin" />
+       android:src="@drawable/coinbudget" />
 
    <TextView
        android:id="@+id/fragment1TitleSavings"
        android:layout_width="wrap_content"
        android:layout_height="wrap_content"
-       android:layout_alignRight="@+id/fragment1TV1"
-       android:layout_below="@+id/fragment1TV1"
-       android:layout_marginRight="60dp"
-       android:layout_marginTop="16dp"
+       android:layout_alignParentRight="true"
+       android:layout_alignParentTop="true"
+       android:layout_marginRight="49dp"
+       android:layout_marginTop="104dp"
        android:text="0"
        android:textAppearance="?android:attr/textAppearanceMedium"
+       android:textColor="#fff"
        android:textSize="50dp" />
-
- 
    
 </RelativeLayout>
 

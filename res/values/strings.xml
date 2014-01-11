@@ -15,7 +15,7 @@
     <string-array name="fragments">
         <item>Budget</item>
         <item>Savings</item>
-        <item>Full Report</item>
+        <item>Delete Progress</item>
         <item>Tutorial</item>
     </string-array>
     

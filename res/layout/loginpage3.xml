@@ -31,7 +31,7 @@
         android:layout_alignBottom="@+id/viewpagerimage3"
         android:layout_alignLeft="@+id/textView1"
         android:inputType="textMultiLine"
-        android:text="If you are a (foreign) student or a recent grad,"
+        android:text="Students and recent grads have limited time,"
         android:textAlignment="center" />
 
     <TextView
@@ -40,7 +40,7 @@
         android:layout_height="wrap_content"
         android:layout_below="@+id/viewpagerimage3"
         android:layout_centerHorizontal="true"
-        android:text="this app was made specially for your needs."
+        android:text="If you lose track of your money, just delete your progress and start over."
         android:textColor="#12530d"
         android:textStyle="bold" />
 

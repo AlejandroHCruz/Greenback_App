@@ -33,7 +33,7 @@
         android:layout_centerHorizontal="true"
         android:layout_marginBottom="32dp"
         android:inputType="textMultiLine"
-        android:text="Let us begin! Click return in the upper corner"
+        android:text="Let us begin! Click return in the right-upper corner"
          />
 
     <TextView

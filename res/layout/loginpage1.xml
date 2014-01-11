@@ -3,7 +3,6 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:gravity="center_vertical" >
-
     <ImageView
         android:id="@+id/viewpagerimage1"
         android:layout_width="wrap_content"
@@ -11,10 +10,20 @@
         android:layout_centerHorizontal="true"
         android:layout_centerVertical="true"
         android:layout_marginLeft="40dp"
-        android:layout_marginTop="25dp"
+        
         android:layout_marginRight="40dp"
         android:src="@drawable/viewpagerloginone" />
-
+    <TextView
+        android:id="@+id/viewpagertittle1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/viewpagerimage1"
+        android:layout_alignLeft="@+id/viewpagerimage1"
+        android:text="Welcome to Greenback"
+        android:textColor="#c54b5f"
+        android:layout_marginBottom="25dp"
+        android:textAlignment="center"
+        android:textAppearance="?android:attr/textAppearanceLarge" />
     <TextView
         android:id="@+id/viewpagertext1"
         android:layout_width="wrap_content"
@@ -22,29 +31,19 @@
         android:layout_below="@+id/viewpagerimage1"
         android:layout_centerHorizontal="true"
         android:textAlignment="center"
-        android:text="Greenback is the easiest way to keep track of your personal finances." 
+        android:text="Greenback is the easiest way to keep track of your incomes and expenses all the time." 
         android:inputType="textMultiLine" />
 
-    <TextView
-        android:id="@+id/viewpagertittle1"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_above="@+id/viewpagerimage1"
-        android:layout_alignLeft="@+id/viewpagerimage1"
-        android:text="Welcome to Greenback´s tutorial"
-        android:textColor="#c54b5f"
-        android:textAlignment="center"
-        android:textAppearance="?android:attr/textAppearanceLarge" />
+    
 
     <TextView
         android:id="@+id/viewpagertext2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignBottom="@+id/viewpagertext1"
-        android:layout_alignLeft="@+id/viewpagerimage1"
-        android:layout_marginLeft="73dp"
+        android:layout_alignParentLeft="true"
+        android:layout_below="@+id/viewpagertext1"
+        android:text=" Scroll to the right to start."
         android:textColor="#12530d"
-        android:textStyle="bold"
-        android:text=" Scroll to the left to start." />
+        android:textStyle="bold" />
 
 </RelativeLayout>

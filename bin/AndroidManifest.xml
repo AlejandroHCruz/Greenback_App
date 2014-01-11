@@ -13,11 +13,13 @@
 
     <application
         android:allowBackup="true"
-        android:icon="@drawable/ic_launcher"
+        android:icon="@drawable/launcher"
         android:label="@string/app_name"
+        android:screenOrientation="portrait"
         android:theme="@style/Theme.Styled" >
         <activity
             android:name="co.ensalsaverde.apps.greenback.Main"
+            android:screenOrientation="portrait"
             android:label="@string/app_name"  >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -27,22 +29,37 @@
         <activity
             android:name="co.ensalsaverde.apps.greenback.Login"
             android:label="@string/app_name"
-             android:icon="@drawable/alertdialogicon">                
+             android:icon="@drawable/alertdialogicon">    
+             android:screenOrientation="portrait"            
                 <category android:name="android.intent.category.DEFAULT" />
         </activity>
         <activity
             android:name="co.ensalsaverde.apps.greenback.Fragment_1"
+            android:screenOrientation="portrait"
             android:label="@string/app_name" >                
                 <category android:name="android.intent.category.DEFAULT" />
         </activity>
-        
+        <activity
+            android:name="co.ensalsaverde.apps.greenback.Fragment_2"
+            android:screenOrientation="portrait"
+            android:label="@string/app_name" >                
+                <category android:name="android.intent.category.DEFAULT" />
+        </activity>
         <activity
             android:name="co.ensalsaverde.apps.greenback.SendToDrive"
+            android:screenOrientation="portrait"
+            android:label="@string/app_name" >                
+                <category android:name="android.intent.category.DEFAULT" />
+        </activity>
+        <activity
+            android:name="co.ensalsaverde.apps.greenback.Goals"
+            android:screenOrientation="portrait"
             android:label="@string/app_name" >                
                 <category android:name="android.intent.category.DEFAULT" />
         </activity>
         <activity
             android:name="co.ensalsaverde.apps.greenback.Sources"
+            android:screenOrientation="portrait"
             android:label="@string/app_name" >
                 <category android:name="android.intent.category.INFO" />
         </activity>

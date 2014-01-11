@@ -77,21 +77,21 @@ public class SessionManager {
     public void goal(String goal){
     	editor.putBoolean(IS_LOGIN, true);        
         
-        editor.putString(KEY_FRAGMENTDEFAULT, goal);
+        editor.putString(KEY_GOAL, goal);
        
         editor.commit();
     }
     public void goalName(String goalname){
     	editor.putBoolean(IS_LOGIN, true);        
         
-        editor.putString(KEY_FRAGMENTDEFAULT, goalname);
+        editor.putString(KEY_GOALNAME, goalname);
        
         editor.commit();
     }
     public void goalPrice(String goalprice){
     	editor.putBoolean(IS_LOGIN, true);        
         
-        editor.putString(KEY_FRAGMENTDEFAULT, goalprice);
+        editor.putString(KEY_GOALPRICE, goalprice);
        
         editor.commit();
     }

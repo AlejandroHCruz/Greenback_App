@@ -9,14 +9,14 @@
     
      <item
         android:id="@+id/savingsmenu"
-        android:icon="@drawable/driveconnecticon"
+        android:icon="@drawable/transfer"
         android:orderInCategory="0"
         android:showAsAction="always"
         android:title="Transfer your cash"/>
     
     <item
     	android:id="@+id/addIncome"
-        android:icon="@drawable/incomeicon"
+        android:icon="@drawable/income"
         android:orderInCategory="2"
         android:showAsAction="always"
         android:title="Add an Income"/>
@@ -24,7 +24,7 @@
         
     <item
         android:id="@+id/addExpense"
-        android:icon="@drawable/outcomeicon"
+        android:icon="@drawable/expense"
         android:orderInCategory="1"
         android:showAsAction="always"
         android:title="Add an expense"/>

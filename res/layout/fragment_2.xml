@@ -3,26 +3,19 @@
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
     android:gravity="center_horizontal"
-    android:orientation="vertical" >
+    android:orientation="vertical"
+    android:background="@drawable/wallpapersavings"
+     >
     
 
-   <TextView
-       android:id="@+id/fragment2TV1"
-       android:layout_width="wrap_content"
-       android:layout_height="wrap_content"
-       android:layout_alignParentTop="true"
-       android:layout_centerHorizontal="true"
-       android:layout_marginTop="30dp"
-       android:textColor="#c54b5f"
-       android:text="You have saved:"
-       android:textAppearance="?android:attr/textAppearanceLarge" />
+  
 
    <ImageView
        android:id="@+id/imageView1"
        android:layout_width="wrap_content"
        android:layout_height="wrap_content"
        android:layout_centerInParent="true"
-       android:src="@drawable/pig" />
+       android:src="@drawable/alcancia2" />
 
    <TextView
        android:id="@+id/fragment2TitleSavings"
@@ -30,19 +23,102 @@
        android:layout_height="wrap_content"
        android:layout_centerInParent="true"
        android:layout_marginTop="55dp"
+       android:textColor="#fff"
        android:text="0"
        android:textAppearance="?android:attr/textAppearanceMedium"
        android:textSize="35dp" />
 
    <Button
-       android:id="@+id/button1"
+       android:id="@+id/GoalButton"
        android:layout_width="wrap_content"
        android:layout_height="wrap_content"
        android:layout_alignParentBottom="true"
        android:layout_centerHorizontal="true"
-       android:layout_marginBottom="20dp"
-       android:background="#04a89f"
-       android:textColor="#ffffff"
-       android:text="Set a Goal" />
-   
+       android:layout_marginBottom="10dp"
+       
+       android:background="@drawable/goal"
+       android:onClick="onGoalButtonClicked"
+        />
+
+   <TextView
+       android:id="@+id/textView1"
+       android:layout_width="wrap_content"
+       android:layout_height="wrap_content"
+       android:layout_above="@+id/GoalButton"
+       
+       android:layout_marginBottom="15dp"
+      
+       android:layout_toLeftOf="@+id/dots"
+       android:text="For your"
+       android:textColor="#fff"
+        />
+   <TextView
+       android:id="@+id/Goal"
+       android:layout_width="wrap_content"
+       android:layout_height="wrap_content"
+       android:layout_alignBaseline="@+id/textView1"
+       android:layout_alignBottom="@+id/textView1"
+       android:paddingLeft="0dp"
+       
+       android:layout_toRightOf="@+id/dots"
+       android:text="Mountain Bicicle"
+       android:textColor="#fff"
+        />
+
+
+
+    <TextView
+        android:id="@+id/initial"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+       android:layout_above="@+id/textView1"      
+       android:layout_marginBottom="5dp"
+       android:layout_marginTop="5dp"
+       android:layout_toLeftOf="@+id/slash"
+        android:text="0"
+        android:textColor="#fff"
+        
+         />
+    <TextView
+        android:id="@+id/end"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@+id/initial"
+       android:layout_alignBottom="@+id/initial"
+       android:layout_toRightOf="@+id/slash"
+       android:textColor="#fff"
+        android:text="5000"
+         />
+
+    <ProgressBar
+        android:id="@+id/regularprogressbar"
+        style="?android:attr/progressBarStyleHorizontal"
+        android:progressDrawable="@drawable/custom_progressbar"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/initial"
+        android:layout_alignLeft="@+id/imageView1"
+        android:layout_alignRight="@+id/imageView1" />
+
+    <TextView
+        android:id="@+id/slash"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@+id/end"
+        android:layout_alignBottom="@+id/end"
+        android:layout_centerHorizontal="true"
+        android:text="/"
+        android:textColor="#fff" />
+
+    <TextView
+        android:id="@+id/dots"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@+id/Goal"
+        android:layout_alignBottom="@+id/Goal"
+        android:layout_alignLeft="@+id/slash"
+        android:text=": "
+        android:visibility="invisible"
+        android:textColor="#fff" />
+
 </RelativeLayout>
