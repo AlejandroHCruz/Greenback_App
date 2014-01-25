@@ -12,17 +12,7 @@
         android:layout_centerVertical="true"
         android:padding="40dp"
         android:paddingBottom="200dp"
-        android:src="@drawable/viewpagerlogin3" />
-
-    <TextView
-        android:id="@+id/viewpagertittle4"
-        android:layout_width="wrap_content"
-        android:layout_height="match_parent"
-        android:layout_centerInParent="true"
-        android:layout_marginTop="40dp"
-        android:textColor="#c54b5f"
-        android:text="It's made for you."
-        android:textAppearance="?android:attr/textAppearanceLarge" />
+        android:src="@drawable/tut3" />
 
     <TextView
         android:id="@+id/viewpagertext3"
@@ -43,5 +33,15 @@
         android:text="If you lose track of your money, just delete your progress and start over."
         android:textColor="#12530d"
         android:textStyle="bold" />
+
+    <TextView
+        android:id="@+id/viewpagertittle4"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:layout_centerHorizontal="true"
+        android:layout_centerVertical="true"
+        android:text="It&apos;s made for you."
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:textColor="#c54b5f" />
 
 </RelativeLayout>

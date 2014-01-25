@@ -12,29 +12,17 @@
         android:layout_centerVertical="true"
         android:padding="40dp"
         android:paddingBottom="200dp"
-        android:src="@drawable/viewpagerlogin2" />
+        android:src="@drawable/tut2" />
 
     <TextView
         android:id="@+id/viewpagertittle2"
         android:layout_width="wrap_content"
         android:layout_height="match_parent"
-        android:layout_centerHorizontal="true"
-		android:layout_alignTop="@+id/viewpagerimage2"
-		android:layout_marginTop="30dp"
-		android:textColor="#c54b5f"
+        android:layout_alignBottom="@+id/textView1"
+        android:layout_alignRight="@+id/textView1"
         android:text="Gain control of your money."
-        android:textAppearance="?android:attr/textAppearanceLarge" />
-
-    <TextView
-        android:id="@+id/viewpagertext2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:layout_centerHorizontal="true"
-        android:layout_marginBottom="32dp"
-        android:inputType="textMultiLine"
-        android:text="Set a goal and visualize your progress towards achieving it."
-        android:textAlignment="center" />
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:textColor="#c54b5f" />
 
     <TextView
         android:id="@+id/textView1"
@@ -42,9 +30,19 @@
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
-        android:layout_marginBottom="14dp"
+        android:layout_marginBottom="28dp"
         android:text="What do you want to spend your savings on?"
         android:textColor="#12530d"
         android:textStyle="bold" />
+
+    <TextView
+        android:id="@+id/viewpagertext2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/textView1"
+        android:layout_alignParentLeft="true"
+        android:inputType="textMultiLine"
+        android:text="Set a goal and visualize your progress towards achieving it."
+        android:textAlignment="center" />
 
 </RelativeLayout>

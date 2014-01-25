@@ -12,18 +12,19 @@
         android:layout_centerVertical="true"
         android:padding="40dp"
         android:paddingBottom="200dp"
-        android:src="@drawable/viewpagerlogin4" />
+        android:src="@drawable/tut4" />
+
+   
 
     <TextView
         android:id="@+id/viewpagertittle4"
         android:layout_width="wrap_content"
         android:layout_height="match_parent"
+        android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
-		android:layout_alignTop="@+id/viewpagerimage4"
-		android:layout_marginTop="30dp"
-		android:textColor="#c54b5f"
-        android:text="Let's grow together."
-        android:textAppearance="?android:attr/textAppearanceLarge" />
+        android:text="Let&apos;s grow together."
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:textColor="#c54b5f" />
 
     <TextView
         android:id="@+id/viewpagertext4"
@@ -31,21 +32,8 @@
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
-        android:layout_marginBottom="32dp"
         android:inputType="textMultiLine"
-        android:text="Let us begin! Click return in the right-upper corner"
-         />
-
-    <TextView
-        android:id="@+id/textView1"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:layout_centerHorizontal="true"
-        android:layout_marginBottom="14dp"
-        android:text="Enjoy!" 
-        android:textColor="#12530d"
-        android:textStyle="bold"
-        />
+        android:text="Let us begin! Click return in the right-upper corner" />
+    
 
 </RelativeLayout>
