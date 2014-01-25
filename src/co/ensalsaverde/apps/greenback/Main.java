@@ -8,6 +8,7 @@ import android.content.DialogInterface.OnClickListener;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.res.Configuration;
+import android.graphics.PixelFormat;
 import android.graphics.Typeface;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
@@ -19,6 +20,7 @@ import android.support.v4.widget.DrawerLayout;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.Window;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
@@ -60,6 +62,14 @@ public class Main extends SherlockFragmentActivity {
 	int intIncome = 0;
 	int intOutcome = 0;
 	int intEditTextSavings = 0;
+	
+	//To improve code-generated gradient quality in certain phones.
+    @Override
+    public void onAttachedToWindow() {
+        super.onAttachedToWindow();
+        Window window = getWindow();
+        window.setFormat(PixelFormat.RGBA_8888);
+    }
 	
 	
 	@Override
@@ -157,7 +167,7 @@ public class Main extends SherlockFragmentActivity {
 			alertDialogBuilder3.setView(promptsView3);
 
 			       //Set dialog message
-			alertDialogBuilder3.setIcon(R.drawable.driveconnecticon);
+			alertDialogBuilder3.setIcon(R.drawable.transfer);
 			alertDialogBuilder3.setTitle("Transfer Your Money");
 			alertDialogBuilder3
 					.setMessage("Enter the amount:");

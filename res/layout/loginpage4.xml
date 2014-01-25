@@ -32,7 +32,8 @@
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
-        android:inputType="textMultiLine"
+        android:inputType="textMultiLine|textNoSuggestions"
+        android:textColor="#fff"
         android:text="Let us begin! Click return in the right-upper corner" />
     
 

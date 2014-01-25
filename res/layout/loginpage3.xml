@@ -19,10 +19,11 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignBottom="@+id/viewpagerimage3"
-        android:layout_alignLeft="@+id/textView1"
-        android:inputType="textMultiLine"
+        android:layout_centerHorizontal="true"
+        android:inputType="textMultiLine|textNoSuggestions"
         android:text="Students and recent grads have limited time,"
-        android:textAlignment="center" />
+        android:textAlignment="center"
+        android:textColor="#fff" />
 
     <TextView
         android:id="@+id/textView1"
@@ -32,6 +33,9 @@
         android:layout_centerHorizontal="true"
         android:text="If you lose track of your money, just delete your progress and start over."
         android:textColor="#12530d"
+        android:textAlignment="center"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
         android:textStyle="bold" />
 
     <TextView

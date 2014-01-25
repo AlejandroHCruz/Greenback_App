@@ -38,17 +38,15 @@ public class Fragment_1 extends Fragment{
 		tvSavings.setText(""+intIncome);							//desplegamos la sumatoria
 		
 		
-
+		//Set font
 		TextView tv = (TextView) view.findViewById(R.id.fragment1SuperTitle);
-
 		Typeface tf = Typeface.createFromAsset(tv.getContext().getAssets(),
 				"fonts/Brush_Script_Std.otf");
-
 		tv.setTypeface(tf);
 
 		
 		
 		return view;
-		
+
 	}
 }

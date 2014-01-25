@@ -2,7 +2,7 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
-    android:background="@drawable/wallpaper"
+    android:background="@drawable/background_general"
     android:gravity="center_horizontal"
     android:orientation="vertical" >
 
@@ -17,14 +17,22 @@
         android:text="You currently have:"
         android:textAlignment="center"
         android:textColor="#fff"
-        android:textSize="30sp"></TextView>
-    
-    	<!-- En Values/attrs.xml esta definido el custom textview -->
+        android:textSize="35sp" >
+    </TextView>
 
     <!-- Coins and Amount -->
 
     <include
+        android:id="@+id/coinsandstuff"
         android:layout_centerHorizontal="true"
         layout="@layout/coinsandamount" />
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:padding="30dp"
+        android:scaleType="fitEnd"
+        android:layout_alignParentBottom="true"
+        android:src="@drawable/medallon" />
 
 </RelativeLayout>

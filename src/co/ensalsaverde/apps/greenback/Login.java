@@ -2,8 +2,10 @@ package co.ensalsaverde.apps.greenback;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.v4.app.NavUtils;
 import android.support.v4.view.ViewPager;
 
+import com.actionbarsherlock.app.ActionBar;
 import com.actionbarsherlock.app.SherlockActivity;
 import com.actionbarsherlock.view.Menu;
 import com.actionbarsherlock.view.MenuItem;
@@ -22,6 +24,9 @@ public class Login extends SherlockActivity {
 		ViewPager myPager = (ViewPager) findViewById(R.id.loginviewpager);
 		myPager.setAdapter(adapter);
 		myPager.setCurrentItem(0);
+
+		ActionBar ab = getSupportActionBar();
+		ab.setDisplayHomeAsUpEnabled(true);
 
 		// Start Main Activity
 
@@ -45,18 +50,28 @@ public class Login extends SherlockActivity {
 		getSupportMenuInflater().inflate(R.menu.login, menu);
 		return true;
 	}
-	
+
 	@Override
 	public boolean onOptionsItemSelected(MenuItem item) {
 		switch (item.getItemId()) {
 		case R.id.continueLogin:
 			Intent i = new Intent(Login.this, Main.class);
 			startActivity(i);
-			
+
+			return true;
+
+		case android.R.id.home:
+			// This ID represents the Home or Up button. In the case of this
+			// activity, the Up button is shown. Use NavUtils to allow users
+			// to navigate up one level in the application structure. For
+			// more details, see the Navigation pattern on Android Design:
+			//
+			// http://developer.android.com/design/patterns/navigation.html#up-vs-back
+			//
+			NavUtils.navigateUpTo(this, new Intent(this, Main.class));
 			return true;
 		}
 		return super.onOptionsItemSelected(item);
 	}
 
 }
-

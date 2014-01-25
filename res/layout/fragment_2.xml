@@ -4,11 +4,20 @@
     android:layout_height="fill_parent"
     android:gravity="center_horizontal"
     android:orientation="vertical"
-    android:background="@drawable/wallpapersavings"
+    android:background="@drawable/background_general"
      >
     
 
-  
+  <TextView
+        android:id="@+id/fragment2SuperTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="24dp"
+        android:text="You have saved:"
+        android:textAlignment="center"
+        android:textColor="#fff"
+        android:textSize="35sp"></TextView>
 
    <ImageView
        android:id="@+id/imageView1"
