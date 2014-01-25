@@ -3,10 +3,9 @@ package co.ensalsaverde.apps.greenback;
 
 import java.util.HashMap;
 
-
-
-import android.support.v4.app.Fragment;
+import android.graphics.Typeface;
 import android.os.Bundle;
+import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -37,6 +36,17 @@ public class Fragment_1 extends Fragment{
 		//int savings = Integer.parseInt(tvSavings.getText().toString()); //Lo que tenemos ahorrado
 		//int totalSavings = savings + intIncome;							//Sumamos el income que traeremos del alertDialog
 		tvSavings.setText(""+intIncome);							//desplegamos la sumatoria
+		
+		
+
+		TextView tv = (TextView) view.findViewById(R.id.fragment1SuperTitle);
+
+		Typeface tf = Typeface.createFromAsset(tv.getContext().getAssets(),
+				"fonts/Brush_Script_Std.otf");
+
+		tv.setTypeface(tf);
+
+		
 		
 		return view;
 		

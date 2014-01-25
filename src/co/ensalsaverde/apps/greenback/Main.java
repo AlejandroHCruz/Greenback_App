@@ -8,6 +8,7 @@ import android.content.DialogInterface.OnClickListener;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.res.Configuration;
+import android.graphics.Typeface;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.support.v4.app.ActionBarDrawerToggle;
@@ -17,6 +18,7 @@ import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
@@ -69,7 +71,8 @@ public class Main extends SherlockFragmentActivity {
 		SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(Main.this);
         SharedPreferences.Editor editor = preferences.edit();
         session = new SessionManager(getBaseContext());				       		
-        HashMap<String, String> user = session.getUserDetails();   
+        HashMap<String, String> user = session.getUserDetails();             
+
         
 
         String fragmentDefault = user.get(SessionManager.KEY_FRAGMENTDEFAULT);
@@ -140,7 +143,7 @@ public class Main extends SherlockFragmentActivity {
 			
 		//Connect and send to to GOOGLE DRIVE
 		case R.id.savingsmenu:
-			//antes era el menú para mandar a drive
+			//antes era el menï¿½ para mandar a drive
 			//Intent i = new Intent(Main.this, SendToDrive.class);
 			//startActivity(i);
 			//return true;
@@ -166,7 +169,7 @@ public class Main extends SherlockFragmentActivity {
 							// WHEN SAVE SAVINGS IS CLICKED
 							final EditText EditTextSavings =(EditText) promptsView3.findViewById(R.id.NumberSavingsTextView);
 							 intEditTextSavings = Integer.parseInt(EditTextSavings.getText().toString());
-							//agarrar la cantidad actual desde shared preferences, restarle esta nueva cantidad, sumárselo a savings y volver a guardarla.
+							//agarrar la cantidad actual desde shared preferences, restarle esta nueva cantidad, sumï¿½rselo a savings y volver a guardarla.
 							 SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(Main.this);
 				               SharedPreferences.Editor editor = preferences.edit();
 				               String selectedItemSavings = SpinnerSavings.getSelectedItem().toString();
@@ -206,7 +209,7 @@ public class Main extends SherlockFragmentActivity {
 				            	   Toast.makeText(Main.this, "$"+intEditTextSavings +" were transfered to your budget", Toast.LENGTH_LONG).show();
 				               		}
 				               
-							  //Hace refresh a la actividad para que el contenido se actualice dinámicamente.
+							  //Hace refresh a la actividad para que el contenido se actualice dinï¿½micamente.
 							  Intent intent = getIntent();
 							  intent.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
 				               finish();
@@ -253,7 +256,7 @@ public class Main extends SherlockFragmentActivity {
 			       //Set dialog message
 
 			alertDialogBuilder.setTitle("Add a new expense");
-			alertDialogBuilder.setIcon(R.drawable.outcomeicon);
+			alertDialogBuilder.setIcon(R.drawable.expense);
 			alertDialogBuilder
 					.setMessage("Enter the amount and select a category");
 			alertDialogBuilder.setPositiveButton("Save",
@@ -293,7 +296,7 @@ public class Main extends SherlockFragmentActivity {
 				            	   String selectedItem = SpinnerExpenses.getSelectedItem().toString();
 				            	   Toast.makeText(Main.this, "$"+intOutcome +" were spent on " + selectedItem + " from your savings", Toast.LENGTH_LONG).show();
 				               }
-							  //Hace refresh a la actividad para que el contenido se actualice dinámicamente.
+							  //Hace refresh a la actividad para que el contenido se actualice dinï¿½micamente.
 							  Intent intent = getIntent();
 							  intent.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
 				               finish();
@@ -316,7 +319,7 @@ public class Main extends SherlockFragmentActivity {
 						}
 					});
 
-			alertDialogBuilder.setIcon(R.drawable.outcomeicon);
+			alertDialogBuilder.setIcon(R.drawable.expense);
 			
 			//create alert dialog
 			final AlertDialog alertDialog = alertDialogBuilder.create();
@@ -344,7 +347,7 @@ public class Main extends SherlockFragmentActivity {
 			// Set dialog message
 			alertDialogBuilder2.setTitle("Add a new income");
 			alertDialogBuilder2.setMessage("Enter the amount and enjoy your new money!");
-			alertDialogBuilder2.setIcon(R.drawable.incomeicon);
+			alertDialogBuilder2.setIcon(R.drawable.income);
 			alertDialogBuilder2.setCancelable(true);	
 			alertDialogBuilder2.setPositiveButton("Save",
 					new OnClickListener() {
@@ -396,7 +399,7 @@ public class Main extends SherlockFragmentActivity {
 					             //  tvBudget.setText(StringTotalBudget);
 					               Toast.makeText(Main.this, "yay! you got $"+intIncome +" more", Toast.LENGTH_LONG).show();
 				             }
-							  //Hace refresh a la actividad para que el contenido se actualice dinámicamente.
+							  //Hace refresh a la actividad para que el contenido se actualice dinï¿½micamente.
 							  Intent intent = getIntent();
 							  intent.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
 				               finish();
@@ -448,6 +451,9 @@ public class Main extends SherlockFragmentActivity {
 			newFragment = new Fragment_1();
 			fm.beginTransaction().replace(R.id.content_frame, newFragment)
 					.commit();
+						
+			//The font is setted in Fragment_1.java
+			
 			int numberOfFragment0 = 0;
             String StringNumberOfFragment0 = ""+numberOfFragment0;
             session.fragmentDefault(StringNumberOfFragment0);
