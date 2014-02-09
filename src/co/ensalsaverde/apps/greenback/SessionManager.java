@@ -102,10 +102,10 @@ public class SessionManager {
     public HashMap<String, String> getUserDetails(){
         HashMap<String, String> user = new HashMap<String, String>();
         // user weekly budget
-        user.put(KEY_BUDGET, pref.getString(KEY_BUDGET, "0"));
+        user.put(KEY_BUDGET, pref.getString(KEY_BUDGET, "0.00"));
          
         // user savings id
-        user.put(KEY_SAVINGS, pref.getString(KEY_SAVINGS, "0"));
+        user.put(KEY_SAVINGS, pref.getString(KEY_SAVINGS, "0.00"));
         
      // user savings id
         user.put(KEY_FRAGMENTDEFAULT, pref.getString(KEY_FRAGMENTDEFAULT, "0"));

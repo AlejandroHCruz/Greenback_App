@@ -30,7 +30,7 @@
         android:layout_alignParentTop="true"
         android:layout_marginTop="104dp"
         android:layout_toRightOf="@+id/center"
-        android:text="0"
+        android:text="0.00"
         android:textAppearance="?android:attr/textAppearanceMedium"
         android:textColor="#fff"
         android:textSize="50dp" />

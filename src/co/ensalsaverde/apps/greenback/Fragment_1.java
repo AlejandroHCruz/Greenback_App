@@ -30,12 +30,12 @@ public class Fragment_1 extends Fragment{
         HashMap<String, String> user = session.getUserDetails();       
         // dinero
         String Income = user.get(SessionManager.KEY_BUDGET);
-        int intIncome = Integer.parseInt(Income.toString());
+        double doubleIncome = Double.parseDouble(Income.toString());
 
 		TextView tvSavings = (TextView) view.findViewById(R.id.fragment1TitleSavings);
 		//int savings = Integer.parseInt(tvSavings.getText().toString()); //Lo que tenemos ahorrado
 		//int totalSavings = savings + intIncome;							//Sumamos el income que traeremos del alertDialog
-		tvSavings.setText(""+intIncome);							//desplegamos la sumatoria
+		tvSavings.setText(""+doubleIncome);							//desplegamos la sumatoria
 		
 		
 		//Set font

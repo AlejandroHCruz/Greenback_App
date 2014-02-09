@@ -30,7 +30,7 @@ public class Fragment_2 extends Fragment {
 	SessionManager session;
 
 	private ProgressBar progressBar;
-	private int progressStatus = 0;
+	private double progressStatus = 0.0;
 	private Handler handler = new Handler();
 
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -62,9 +62,9 @@ public class Fragment_2 extends Fragment {
 		TextView goaldots = (TextView) view.findViewById(R.id.dots);
 
 		if (Goal.toString().equals("1") && savings != GoalPrice) {
-			int intsavings = Integer.parseInt(savings.toString());
-			int intGoalPrice = Integer.parseInt(GoalPrice.toString());
-			progressStatus = (intsavings * 100) / intGoalPrice;
+			double doublesavings = Double.parseDouble(savings.toString());
+			double doubleGoalPrice = Double.parseDouble(GoalPrice.toString());
+			progressStatus = (doublesavings * 100) / doubleGoalPrice;
 
 			goaltxt1.setVisibility(View.VISIBLE);
 			goaltxt2.setText(GoalName);
@@ -76,7 +76,7 @@ public class Fragment_2 extends Fragment {
 			goalend.setText(GoalPrice);
 			goalend.setVisibility(View.VISIBLE);
 			goaldots.setVisibility(View.VISIBLE);
-			progressBar.setProgress(progressStatus);
+			progressBar.setProgress((int) progressStatus);
 
 		} else if (Goal.toString().equals("1") && savings == GoalPrice) {
 			int intsavings = Integer.parseInt(savings.toString());
@@ -92,7 +92,7 @@ public class Fragment_2 extends Fragment {
 			goalslash.setVisibility(View.VISIBLE);
 			goalend.setText(GoalPrice);
 			goalend.setVisibility(View.VISIBLE);
-			progressBar.setProgress(progressStatus);
+			progressBar.setProgress((int) progressStatus);
 		} else if (Goal.toString().equals("0")) {
 			goaltxt1.setVisibility(View.INVISIBLE);
 			goaltxt2.setText(GoalName);

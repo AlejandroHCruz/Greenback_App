@@ -8,11 +8,9 @@
         android:id="@+id/viewpagerimage1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_centerHorizontal="true"
-        android:layout_centerVertical="true"
+        android:layout_centerInParent="true"
         android:layout_marginLeft="40dp"
         android:layout_marginRight="40dp"
-        android:layout_below="@+id/viewpagertittle1"
         android:src="@drawable/viewpagerloginone" />
 
     <TextView
@@ -30,23 +28,25 @@
         android:id="@+id/viewpagertext1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/viewpagerimage1"
         android:layout_centerHorizontal="true"
+        android:gravity="center_horizontal"
         android:inputType="textMultiLine|textNoSuggestions"
         android:text="The easiest way to keep track of your incomes and expenses all the time."
         android:textAlignment="center"
+        android:layout_below="@+id/viewpagerimage1"
         android:textColor="#fff" />
 
     <TextView
         android:id="@+id/viewpagertext2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/viewpagertext1"
+        android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
-        android:text=" Scroll to the right to start."
-        android:textColor="#12530d"
+        android:layout_marginBottom="28dp"
         android:layout_marginLeft="10dp"
         android:layout_marginRight="10dp"
+        android:text="Scroll to the right to start."
+        android:textColor="#12530d"
         android:textStyle="bold" />
 
 </RelativeLayout>

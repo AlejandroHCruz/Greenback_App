@@ -1,5 +1,7 @@
 package co.ensalsaverde.apps.greenback;
 
+import java.math.BigDecimal;
+import java.math.RoundingMode;
 import java.util.HashMap;
 
 import android.app.AlertDialog;
@@ -9,7 +11,6 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.res.Configuration;
 import android.graphics.PixelFormat;
-import android.graphics.Typeface;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.support.v4.app.ActionBarDrawerToggle;
@@ -19,7 +20,6 @@ import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.view.LayoutInflater;
 import android.view.View;
-import android.view.ViewGroup;
 import android.view.Window;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -32,8 +32,6 @@ import android.widget.Toast;
 import com.actionbarsherlock.app.SherlockFragmentActivity;
 import com.actionbarsherlock.view.Menu;
 import com.actionbarsherlock.view.MenuItem;
-
-
 
 
 public class Main extends SherlockFragmentActivity {
@@ -59,9 +57,10 @@ public class Main extends SherlockFragmentActivity {
 	
 	TextView tvSavings, tvBudget = null;
 	
-	int intIncome = 0;
-	int intOutcome = 0;
-	int intEditTextSavings = 0;
+	double doubleIncome = 0.00;
+	double doubleOutcome = 0.00;
+	double doubleEditTextSavings = 0.00;
+	
 	
 	//To improve code-generated gradient quality in certain phones.
     @Override
@@ -124,6 +123,15 @@ public class Main extends SherlockFragmentActivity {
 		}
 	}
 
+	//Round Decimals
+	public static double round(double value, int places) {
+	    if (places < 0) throw new IllegalArgumentException();
+
+	    BigDecimal bd = new BigDecimal(value);
+	    bd = bd.setScale(places, RoundingMode.HALF_UP);
+	    return bd.doubleValue();
+	}
+	
 	@Override
 	public boolean onPrepareOptionsMenu(Menu menu) {
 		boolean drawerOpen = mDrawerLayout.isDrawerOpen(mDrawerList);
@@ -178,7 +186,23 @@ public class Main extends SherlockFragmentActivity {
 						public void onClick(DialogInterface dialog, int which) {
 							// WHEN SAVE SAVINGS IS CLICKED
 							final EditText EditTextSavings =(EditText) promptsView3.findViewById(R.id.NumberSavingsTextView);
-							 intEditTextSavings = Integer.parseInt(EditTextSavings.getText().toString());
+							//Get Value
+							doubleEditTextSavings = Double.parseDouble(EditTextSavings.getText().toString());
+							//Round to two decimals
+							doubleEditTextSavings = round(doubleEditTextSavings, 2);
+								
+								String EditTextSavingsLenght = EditTextSavings.getText().toString();
+								// Checar que no este vacio
+								if(EditTextSavingsLenght.matches("")){
+
+									Toast.makeText(Main.this,"Please enter an amount of money to transfer.",Toast.LENGTH_SHORT).show();
+																	
+
+								}
+								
+								else{
+
+							 
 							//agarrar la cantidad actual desde shared preferences, restarle esta nueva cantidad, sum�rselo a savings y volver a guardarla.
 							 SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(Main.this);
 				               SharedPreferences.Editor editor = preferences.edit();
@@ -188,35 +212,35 @@ public class Main extends SherlockFragmentActivity {
 				               HashMap<String, String> user = session.getUserDetails();       
 				               // dinero
 				               String StringBudget = user.get(SessionManager.KEY_BUDGET);
-				               int intBudget = Integer.parseInt(StringBudget.toString());
+				               double doubleBudget = Double.parseDouble(StringBudget.toString());
 				               String StringSavings = user.get(SessionManager.KEY_SAVINGS);
-				               int intSavings = Integer.parseInt(StringSavings.toString());
+				               double doubleSavings = Double.parseDouble(StringSavings.toString());
 				               
 				               if (selectedItemSavings.toString().equals("Weekly Budget to Savings")){
-				            	   int intMinusBudget = intBudget - intEditTextSavings;
-				            	   String StringTotalBudget = ""+intMinusBudget; 
-				            	   int intTotalSavings = intSavings + intEditTextSavings;
-				            	   String StringTotalSavings = ""+intTotalSavings;				            	   
+				            	   double doubleMinusBudget = doubleBudget - doubleEditTextSavings;
+				            	   String StringTotalBudget = ""+doubleMinusBudget; 
+				            	   double doubleTotalSavings = doubleSavings + doubleEditTextSavings;
+				            	   String StringTotalSavings = ""+doubleTotalSavings;				            	   
 				            	   session.createLoginSession(StringTotalBudget);
 				            	   session.transfer(StringTotalSavings);
 				            	   System.out.println("Total savings = " + StringTotalSavings);	
 				            	   int numberOfFragment = 1;
 					               String StringNumberOfFragment = ""+numberOfFragment;
 					               session.fragmentDefault(StringNumberOfFragment);
-				            	   Toast.makeText(Main.this, "$"+intEditTextSavings +" were transfered to your savings", Toast.LENGTH_LONG).show();
+				            	   Toast.makeText(Main.this, "$"+doubleEditTextSavings +" were transfered to your savings", Toast.LENGTH_LONG).show();
 				               		}
 				               if (selectedItemSavings.toString().equals("Savings to Weekly Budget")){
-				            	   int intMinusSavings = intSavings - intEditTextSavings;
-				            	   String StringTotalSavings = ""+intMinusSavings; 
-				            	   int intTotalBudget = intBudget + intEditTextSavings;
-				            	   String StringTotalBudget = ""+intTotalBudget;				            	   
+				            	   double doubleMinusSavings = doubleSavings - doubleEditTextSavings;
+				            	   String StringTotalSavings = ""+doubleMinusSavings; 
+				            	   double doubleTotalBudget = doubleBudget + doubleEditTextSavings;
+				            	   String StringTotalBudget = ""+doubleTotalBudget;				            	   
 				            	   session.createLoginSession(StringTotalBudget);
 				            	   session.transfer(StringTotalSavings);
 				            	   System.out.println("Total savings = " + StringTotalSavings);	
 				            	   int numberOfFragment = 0;
 					               String StringNumberOfFragment = ""+numberOfFragment;
 					               session.fragmentDefault(StringNumberOfFragment);
-				            	   Toast.makeText(Main.this, "$"+intEditTextSavings +" were transfered to your budget", Toast.LENGTH_LONG).show();
+				            	   Toast.makeText(Main.this, "$"+doubleEditTextSavings +" were transfered to your budget", Toast.LENGTH_LONG).show();
 				               		}
 				               
 							  //Hace refresh a la actividad para que el contenido se actualice din�micamente.
@@ -225,7 +249,7 @@ public class Main extends SherlockFragmentActivity {
 				               finish();
 				               startActivity(intent);
 				               
-							 
+						} 
 							
 								
 
@@ -276,7 +300,10 @@ public class Main extends SherlockFragmentActivity {
 						public void onClick(DialogInterface dialog, int which) {
 							// WHEN SAVE EXPENSES IS CLICKED
 							final EditText outcome =(EditText) promptsView.findViewById(R.id.NumberExpensesTextView);
-							 intOutcome = Integer.parseInt(outcome.getText().toString());
+							//Get Value
+							doubleOutcome = Double.parseDouble(outcome.getText().toString());
+							//Round to two decimals
+							doubleOutcome = round(doubleOutcome, 2);
 							//agarrar la cantidad actual desde shared preferences, sumarle el income y volver a guardarla.
 							 SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(Main.this);
 				               SharedPreferences.Editor editor = preferences.edit();
@@ -289,22 +316,28 @@ public class Main extends SherlockFragmentActivity {
 				               String StringSavings = user.get(SessionManager.KEY_SAVINGS);
 				               
 				               if (selectedItem2.toString().equals("From Weekly Budget")){
-				            	   int intBudget = Integer.parseInt(StringBudget.toString());				               
-				            	   int intMinusBudget = intBudget - intOutcome;
-				            	   String StringMinusBudget = ""+intMinusBudget;
-				            	   session.createLoginSession(StringMinusBudget);				             			              
-				            	   System.out.println(intOutcome);
+				            	   double doubleBudget = Double.parseDouble(StringBudget.toString());				               
+				            	   double doubleMinusBudget = doubleBudget - doubleOutcome;
+				            	   String StringMinusBudget = ""+doubleMinusBudget;
+				            	   session.createLoginSession(StringMinusBudget);	
+					               int numberOfFragment = 0;
+					               String StringNumberOfFragment = ""+numberOfFragment;
+					               session.fragmentDefault(StringNumberOfFragment);
+				            	   System.out.println(doubleOutcome);
 				            	   String selectedItem = SpinnerExpenses.getSelectedItem().toString();
-				            	   Toast.makeText(Main.this, "$"+intOutcome +" were spent on " + selectedItem + " from your weekly budget", Toast.LENGTH_LONG).show();
+				            	   Toast.makeText(Main.this, "$"+doubleOutcome +" were spent on " + selectedItem + " from your weekly budget", Toast.LENGTH_LONG).show();
 				               }
 				               if (selectedItem2.toString().equals("From Savings")){
-				            	   int intSavings = Integer.parseInt(StringSavings.toString());				               
-				            	   int intMinusSavings = intSavings - intOutcome;
-				            	   String StringMinusSavings = ""+intMinusSavings;
-				            	   session.transfer(StringMinusSavings);				             			              
-				            	   System.out.println(intOutcome);
+				            	   double doubleSavings = Double.parseDouble(StringSavings.toString());				               
+				            	   double doubleMinusSavings = doubleSavings - doubleOutcome;
+				            	   String StringMinusSavings = ""+doubleMinusSavings;
+				            	   session.transfer(StringMinusSavings);
+					               int numberOfFragment = 1;
+					               String StringNumberOfFragment = ""+numberOfFragment;
+					               session.fragmentDefault(StringNumberOfFragment);
+				            	   System.out.println(doubleOutcome);
 				            	   String selectedItem = SpinnerExpenses.getSelectedItem().toString();
-				            	   Toast.makeText(Main.this, "$"+intOutcome +" were spent on " + selectedItem + " from your savings", Toast.LENGTH_LONG).show();
+				            	   Toast.makeText(Main.this, "$"+doubleOutcome +" were spent on " + selectedItem + " from your savings", Toast.LENGTH_LONG).show();
 				               }
 							  //Hace refresh a la actividad para que el contenido se actualice din�micamente.
 							  Intent intent = getIntent();
@@ -312,8 +345,6 @@ public class Main extends SherlockFragmentActivity {
 				               finish();
 				               startActivity(intent);
 				               
-							 
-							
 								
 
 						}
@@ -366,7 +397,10 @@ public class Main extends SherlockFragmentActivity {
 							// TODO Auto-generated method stub
 							
 							final EditText income =(EditText) promptsView2.findViewById(R.id.NumberIncomeTextView);
-							 intIncome = Integer.parseInt(income.getText().toString());
+							//Get value 
+							doubleIncome = Double.parseDouble(income.getText().toString());
+							//Round to two decimals
+							doubleIncome = round(doubleIncome, 2);
 							 
 							// Intent intent = new Intent();
 						    //	intent.putExtra(EXTRA_MESSAGE, intIncome);
@@ -384,30 +418,30 @@ public class Main extends SherlockFragmentActivity {
 				               String StringBudget = user.get(SessionManager.KEY_BUDGET);
 				             
 				               if (selectedItem.toString().equals("To Savings")){
-					               int intSavings = Integer.parseInt(StringSavings.toString());
-					               int intTotalSavings = intSavings + intIncome;
-					               String StringTotalSavings = ""+intTotalSavings;
+				            	   double doubleSavings = Double.parseDouble(StringSavings.toString());
+					               double doubleTotalSavings = doubleSavings + doubleIncome;
+					               String StringTotalSavings = ""+doubleTotalSavings;
 					               session.transfer(StringTotalSavings);
 					               int numberOfFragment = 1;
 					               String StringNumberOfFragment = ""+numberOfFragment;
 					               session.fragmentDefault(StringNumberOfFragment);
-					               System.out.println(intTotalSavings);
+					               System.out.println(doubleTotalSavings);
 					              // tvSavings.setText(""+intTotalSavings);
 					               
-					               Toast.makeText(Main.this, "yay! you saved $"+intIncome +" more", Toast.LENGTH_LONG).show();
+					               Toast.makeText(Main.this, "yay! you saved $"+doubleIncome +" more", Toast.LENGTH_LONG).show();
 				             }
 				             if (selectedItem.toString().equals("To Weekly Budget")){
 					            // weekly Budget  
-					               int intBudget = Integer.parseInt(StringBudget.toString());
-					               int intTotalBudget = intBudget + intIncome;
-					               String StringTotalBudget = ""+intTotalBudget;
+					               double doubleBudget = Double.parseDouble(StringBudget.toString());
+					               double doubleTotalBudget = doubleBudget + doubleIncome;
+					               String StringTotalBudget = ""+doubleTotalBudget;
 					               session.createLoginSession(StringTotalBudget);
 					               int numberOfFragment = 0;
 					               String StringNumberOfFragment = ""+numberOfFragment;
 					               session.fragmentDefault(StringNumberOfFragment);
-					               System.out.println(intTotalBudget);
+					               System.out.println(doubleTotalBudget);
 					             //  tvBudget.setText(StringTotalBudget);
-					               Toast.makeText(Main.this, "yay! you got $"+intIncome +" more", Toast.LENGTH_LONG).show();
+					               Toast.makeText(Main.this, "yay! you got $"+doubleIncome +" more", Toast.LENGTH_LONG).show();
 				             }
 							  //Hace refresh a la actividad para que el contenido se actualice din�micamente.
 							  Intent intent = getIntent();

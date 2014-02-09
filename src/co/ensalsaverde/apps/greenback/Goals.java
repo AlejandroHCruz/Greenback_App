@@ -1,5 +1,8 @@
 package co.ensalsaverde.apps.greenback;
 
+import java.math.BigDecimal;
+import java.math.RoundingMode;
+
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
@@ -50,10 +53,13 @@ public class Goals extends Activity{
          
         @Override
         public void onClick(View arg0) {
-            // Get username, password from EditText
+            // Get values
             
             String StringGoalName = txtGoalName.getText().toString();
-            String StringGoalPrice = txtGoalPrice.getText().toString();
+            double doubleGoalPrice = Double.parseDouble(txtGoalPrice.getText().toString());
+			//Round to two decimals
+			doubleGoalPrice = round(doubleGoalPrice, 2);
+			String StringGoalPrice = ""+doubleGoalPrice;
                             
             if(StringGoalName.trim().length() > 0 && StringGoalPrice.trim().length() > 0){
             	    String txtgoal = "1";    
@@ -76,6 +82,15 @@ public class Goals extends Activity{
     });
 
     }
+	
+	//Round Decimals
+	public static double round(double value, int places) {
+	    if (places < 0) throw new IllegalArgumentException();
+
+	    BigDecimal bd = new BigDecimal(value);
+	    bd = bd.setScale(places, RoundingMode.HALF_UP);
+	    return bd.doubleValue();
+	}
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
